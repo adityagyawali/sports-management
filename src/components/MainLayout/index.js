@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { addMessage } from "../../actions/addMessage";
 
+import { Input, Button } from "semantic-ui-react";
+
 import Header from "../Header";
 import Footer from "../Footer";
 
@@ -32,12 +34,14 @@ class DisplayMessages extends React.Component {
 			<div>
 				<Header />
 				<h2>Type in a new Message:</h2>
-				<input
+				<Input
 					type="text"
 					value={this.state.input}
 					onChange={this.handleChange}
 				/>
-				<button onClick={this.submitMessage}>Submit</button>
+				<Button primary onClick={this.submitMessage}>
+					Submit
+				</Button>
 				<ul>{newMessage}</ul>
 				<Footer />
 			</div>
