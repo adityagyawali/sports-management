@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Segment, Button } from "semantic-ui-react";
 
-class Header extends Component {
+export default class MenuExampleInvertedSegment extends Component {
 	state = { activeItem: "home" };
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -10,37 +10,34 @@ class Header extends Component {
 		const { activeItem } = this.state;
 
 		return (
-			<Menu secondary>
-				<Menu.Item
-					name="home"
-					active={activeItem === "home"}
-					onClick={this.handleItemClick}
-				/>
-				<Menu.Item
-					name="messages"
-					active={activeItem === "messages"}
-					onClick={this.handleItemClick}
-				/>
-				<Menu.Item
-					name="friends"
-					active={activeItem === "friends"}
-					onClick={this.handleItemClick}
-				/>
-				<Menu.Menu position="right">
+			<Segment inverted>
+				<Menu inverted secondary>
 					<Menu.Item
-						name="login"
-						active={activeItem === "login"}
+						name="home"
+						active={activeItem === "home"}
 						onClick={this.handleItemClick}
 					/>
 					<Menu.Item
-						name="Sign Up"
-						active={activeItem === "Sign Up"}
+						name="Today's Ball"
+						active={activeItem === "today's ball"}
 						onClick={this.handleItemClick}
 					/>
-				</Menu.Menu>
-			</Menu>
+					<Menu.Item
+						name="Competitions"
+						active={activeItem === "Competitions"}
+						onClick={this.handleItemClick}
+					/>
+
+					<Menu.Menu position="right">
+						<Menu.Item>
+							<Button primary>Sign Up</Button>
+						</Menu.Item>
+						<Menu.Item>
+							<Button primary>Login</Button>
+						</Menu.Item>
+					</Menu.Menu>
+				</Menu>
+			</Segment>
 		);
 	}
 }
-
-export default Header;
