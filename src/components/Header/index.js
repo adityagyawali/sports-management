@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Segment, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export default class MenuExampleInvertedSegment extends Component {
 	state = { activeItem: "home" };
@@ -30,10 +31,14 @@ export default class MenuExampleInvertedSegment extends Component {
 
 					<Menu.Menu position="right">
 						<Menu.Item>
-							<Button primary>Sign Up</Button>
+							<Link to="/register">
+								<Button primary>Sign Up</Button>{" "}
+							</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Button primary>Login</Button>
+							<Link to="/login">
+								<Button primary>Login</Button>
+							</Link>
 						</Menu.Item>
 					</Menu.Menu>
 				</Menu>
