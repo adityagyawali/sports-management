@@ -1,7 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
+import { Menu, Segment, Button } from "semantic-ui-react";
 
-const Header = () => {
-	return <header>header</header>;
-};
+export default class MenuExampleInvertedSegment extends Component {
+	state = { activeItem: "home" };
 
-export default Header;
+	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+	render() {
+		const { activeItem } = this.state;
+
+		return (
+			<Segment inverted>
+				<Menu inverted secondary>
+					<Menu.Item
+						name="home"
+						active={activeItem === "home"}
+						onClick={this.handleItemClick}
+					/>
+					<Menu.Item
+						name="Today's Ball"
+						active={activeItem === "today's ball"}
+						onClick={this.handleItemClick}
+					/>
+					<Menu.Item
+						name="Competitions"
+						active={activeItem === "Competitions"}
+						onClick={this.handleItemClick}
+					/>
+
+					<Menu.Menu position="right">
+						<Menu.Item>
+							<Button primary>Sign Up</Button>
+						</Menu.Item>
+						<Menu.Item>
+							<Button primary>Login</Button>
+						</Menu.Item>
+					</Menu.Menu>
+				</Menu>
+			</Segment>
+		);
+	}
+}
