@@ -25,7 +25,8 @@ class ImageRolling extends Component{
 
     changeImage = ()=>{
         let num = this.state.num;
-        if (num === 2) num = 0;
+        const imageListLength =  this.state.imageList.length - 1;
+        if (num === imageListLength) num = 0;
         else num++;
         
         this.setState({
