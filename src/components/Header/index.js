@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Menu, Segment, Button } from "semantic-ui-react";
+import './index.css';
 
 export default class MenuExampleInvertedSegment extends Component {
 	state = { activeItem: "home" };
