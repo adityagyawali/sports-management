@@ -1,0 +1,30 @@
+.imageBox {
+    height: 50rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    position:relative;
+}
+
+
+.mainImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 55rem;
+    width: 100%;
+    transition: all 1s;
+    transform: scale(1);   
+}
+
+.mainInfoBox{
+    position: absolute;
+    top: 20rem;
+}
+
+.mainTitle {
+    font-size: 4.5rem;
+}
+
+.mainDescription{
+    font-size: 2rem;
+}
