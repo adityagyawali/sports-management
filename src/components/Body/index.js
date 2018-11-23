@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Container, Image, Button } from 'semantic-ui-react';
-import "./ImageRolling.css";
+import "./index.css";
 import Football from './images/football.jpg';
 import Basketball from './images/basketball.jpg';
 import IceHockey from './images/iceHockey.jpg';

@@ -6,7 +6,7 @@ import { Input, Button } from "semantic-ui-react";
 
 import Header from "../Header";  // Adit ==> margin-bottom: 0; border-radius: 0px; can you add this style ?
 import Footer from "../Footer";
-import ImageRolling from "../Body/ImageRolling";
+import ImageRolling from "../Body";
 
 class DisplayMessages extends React.Component {
 	state = {

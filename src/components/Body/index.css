@@ -1,5 +1,5 @@
 .imageBox {
-    height: 60rem;
+    height: 50rem;
     text-align: center;
     color: rgb(255, 255, 255);
     position:relative;
@@ -10,7 +10,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 60rem;
+    height: 55rem;
     width: 100%;
     transition: all 1s;
     transform: scale(1);   
@@ -18,7 +18,7 @@
 
 .mainInfoBox{
     position: absolute;
-    top: 23rem;
+    top: 20rem;
 }
 
 .mainTitle {
