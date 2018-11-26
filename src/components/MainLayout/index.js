@@ -1,10 +1,10 @@
 import React from "react";
-
 import Sport from "../SportSection";
 
 import Header from "../Header"; // Adit ==> margin-bottom: 0; border-radius: 0px; can you add this style ?
 import Footer from "../Footer";
 import ImageRolling from "../Body";
+
 
 class DisplayMessages extends React.Component {
 	render() {
@@ -12,7 +12,9 @@ class DisplayMessages extends React.Component {
 			<div>
 				<Header />
 				<ImageRolling />
+
 				<Sport />
+
 				<Footer />
 			</div>
 		);
