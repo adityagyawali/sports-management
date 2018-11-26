@@ -1,0 +1,18 @@
+
+.footer {
+  background: rgb(19, 76, 151);
+  padding: 10px 0;
+}
+.footer a {
+  color: rgb(202, 201, 130);
+  font-size: 30px;
+  padding: 10px;
+  border-right: 1px solid #70726F;
+  transition: all .5s ease;
+}
+.footer a:first-child {
+  border-left: 1px solid #70726F;
+}
+.footer a:hover {
+  color: white;
+}
