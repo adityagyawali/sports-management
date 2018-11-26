@@ -1,0 +1,23 @@
+
+   .football {
+    content: "football";
+    float: left;
+    width: 200%;
+    padding: 5px;
+  } 
+
+  
+  .basketball {
+    content: "basketball";
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+  } 
+
+  
+  .icehockey {
+    content: "icehockey";
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+  } 
