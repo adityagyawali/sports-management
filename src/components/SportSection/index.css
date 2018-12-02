@@ -24,11 +24,17 @@
 .sports {
 	display: flex;
 	justify-content: space-around;
-	margin-top: 5%;
+  margin-top: 5%;
+  background:linear-gradient(white, blue)
 }
 
 .basketball {
 	width: 100%;
+}
+.cycle {
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
 }
 
 .golf {
@@ -36,8 +42,46 @@
   margin-bottom:  5%;
   margin-top: 5%;
 }
-
-
+.badminton {
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.tennis {
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.football {
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.ski{
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.icehockey {
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.usfootball{
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.usfoo{
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
+.ball{
+  width: 100%;
+  margin-bottom:  5%;
+  margin-top: 5%;
+}
 .description {
 	font-size: 20px;
 	font-weight: 600;
