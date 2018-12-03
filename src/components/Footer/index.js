@@ -9,11 +9,11 @@ const Footer = () => {
 			<br/>
 			<br />
 			<span style={{"color":"white"}} >Follow us on:</span>
-			<a href="#"><i class="facebook icon"></i></a>
-			<a href="#"><i class="twitter icon"></i></a>
-			<a href="#"><i class="linkedin icon"></i></a>
-			<a href="#"><i class="google icon"></i></a>
-			<a href="#"><i class="skype icon"></i></a>
+			<a href="www.facebook.com"><i className="facebook icon"></i></a>
+			<a href="www.twitter.com"><i className="twitter icon"></i></a>
+			<a href="www.linkedin.com"><i className="linkedin icon"></i></a>
+			<a href="www.google.com"><i className="google icon"></i></a>
+			<a href="www.skype.com"><i className="skype icon"></i></a>
 		</Container>
 	);
 };

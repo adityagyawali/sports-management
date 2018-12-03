@@ -1,0 +1,32 @@
+.eventImageBox {
+    height: 32rem;
+    color: rgb(255, 255, 255);
+    position: relative;
+
+    background-color: #f7f7f7; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.eventInfoBox{
+    position: absolute;
+    top: 7rem;
+    left: 3rem;
+    text-align: left;
+    width: 30rem !important;
+    text-shadow: 2px 2px 0 rgba(0,0,0,.54);
+}
+
+.eventTitle {
+    font-size: 3rem;
+    margin: 0 0;
+}
+
+.eventDescription{
+    font-size: 1.5rem;
+}
+
+a, a:hover {
+    color: white;
+}

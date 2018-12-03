@@ -1,0 +1,29 @@
+
+.searchBar  {
+    position: relative;
+    top: -2rem;
+    height: 4rem;
+    width: 65rem !important;
+    background-color: black;
+    border-radius: 5px;
+}
+.searchForm {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex !important;
+    color: white;
+    font-size: 1.5rem !important;
+    left: 1rem;
+}
+
+
+.searchInput{
+    height: 2rem;
+    padding: 0 2rem 0 1rem;
+    font-size: 1rem !important;
+}
+
+.searchButton {
+    color: white;
+}
