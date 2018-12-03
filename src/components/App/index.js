@@ -8,6 +8,7 @@ import {
 
 import MainLayout from "../MainLayout";
 import EventLayout from "../EventLayout";
+import LogIn from '../SignUpLogin/LogIn';
 
 class App extends Component {
 	render() {
@@ -16,7 +17,8 @@ class App extends Component {
 				<Switch>
 					<Route path="/app" component={MainLayout} />
 					<Route path="/eventList" component={EventLayout} />
-					
+					<Route path="/logIn" component={LogIn} />
+
 					<Redirect from="/" to="/app" exact />				
 					<Route render={() => <h1>404</h1>} />
 				</Switch>

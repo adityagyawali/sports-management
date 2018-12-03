@@ -1,25 +1,43 @@
 import React from 'react';
-import {Container, Form, Input} from 'semantic-ui-react';
+import {Container, Form, Input, Button, Dropdown} from 'semantic-ui-react';
 
 import './SearchBar.css'; 
 
 class SearchBar extends React.Component{
+    
+    state = {
+        category: "",
+        region: "",
+        cost:"",
+        division:""
+    }
+
+    handleOnChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+    
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.onChange(this.state);
+    }
+    
     render(){
+
+        const countryOptions = [ { key: 'af', value: 'af', flag: 'af', text: 'BASKET BALL' } ]
         return (
             <Container className="searchBar">
-                <Form className="searchForm">
-                    
-                    <label htmlFor="category">Find </label>
-                    <Input name="category" className="searchInput" list='category' placeholder='Choose sports...' />
-                        <datalist id='category'>
-                            <option value='All' />
-                            <option value='Basketball' />
-                            <option value='Football' />
-                            <option value='Ice Hockey' />
-                        </datalist>
+                <Form className="searchForm" onSubmit={this.onSubmit}>
+
+                <label htmlFor="category">Find </label>
+                <Dropdown name="category" onChange={this.handleOnChange} placeholder='Choose sports...' search selection options={countryOptions} />
+
+
+
                     
                     <label htmlFor="region">In </label>
-                    <Input name="region" className="searchInput" list='region' placeholder='Choose region...' />
+                    <Input onChange={this.handleOnChange} value={this.state.region} name="region" className="searchInput" list='region' placeholder='Choose region...' />
                         <datalist id='region'>
                             <option value='All' />
                             <option value='Helsinki' />
@@ -28,7 +46,7 @@ class SearchBar extends React.Component{
                         </datalist>
                     
                     <label htmlFor="cost">Cost</label>
-                    <Input name="cost" className="searchInput" list='cost' placeholder='Choose cost...' />
+                    <Input onChange={this.handleOnChange} value={this.state.cost} name="cost" className="searchInput" list='cost' placeholder='Choose cost...' />
                         <datalist id='cost'>
                             <option value='All' />
                             <option value='Free of charge' />
@@ -37,16 +55,7 @@ class SearchBar extends React.Component{
                             <option value='< 20 euro' />
                         </datalist>
                    
-                    <label htmlFor="division">Level </label>
-                    <Input name="division" className="searchInput" list='division' placeholder='Choose level...' />
-                        <datalist id='division'>
-                            <option value='ALL' />
-                            <option value="Open for anyone" />
-                            <option value='Div 4 - 5' />
-                            <option value='Div 2 - 3' />
-                            <option value='Div 1' />
-                        </datalist>
-
+                    <Button color="blue" type="submit">Find! </Button>
                 </Form>
             </Container>
         );

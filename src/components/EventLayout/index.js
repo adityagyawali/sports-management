@@ -7,9 +7,6 @@ import EventImage from './EventImage';
 import SearchBar from './SearchBar';
 import EventList from './EventList';
 
-
-
-
 class EventLayout extends React.Component {
     static defaultProps = {
         list: [
@@ -20,8 +17,22 @@ class EventLayout extends React.Component {
             { id:5, title:"It's open for everybody", category: "BASKET BALL",date: 'Mon, 03 Dec', players: 5,  joinedPlayers: 4, time: '17:00', address: "Kaj Franckin katu 4", region: "Helsinki",  cost: "FREE" },
             { id:6, title:"Just come and play for fun", category: "FLOOR BALL",date: 'Mon, 03 Dec', players: 5,  joinedPlayers: 2, time: '09:00', address: "Kaj Franckin katu 4", region: "Espoo",  cost: "3 euro" },
             { id:7, title:"We need practice as team", category: "FOOT BALL",date: 'Tue, 04 Dec', players: "Team",  joinedPlayers: "Team", time: '20:30', address: "Kaj Franckin katu 4", region: "Espoo",  cost: "1 euro" },
-            {id:8,  title:"Just for fun, come and play", category: "FOOT BALL",date: 'Tue, 04 Dec', players: 8, joinedPlayers: 3, time: '19:00', address: "Kaj Franckin katu 4", region: "Helsinki",  cost: "10 euro/month" },
+            { id:8,  title:"Just for fun, come and play", category: "FOOT BALL",date: 'Tue, 04 Dec', players: 8, joinedPlayers: 3, time: '19:00', address: "Kaj Franckin katu 4", region: "Helsinki",  cost: "10 euro/month" },
         ]
+    }
+
+    state = {
+        list: this.props.list
+    }
+
+    handleOnChange = ( filteringInfo )=>{
+        const allList = this.props.list;
+        let filteredList = allList.filter ( event => (
+            event.category === filteringInfo.category
+        ));
+        this.setState({
+            list: filteredList
+        });
     }
         
     render() { 
@@ -30,8 +41,8 @@ class EventLayout extends React.Component {
 				<Header />
                 <Container fluid style={{height: "100rem"}}>
                     <EventImage />
-                    <SearchBar />
-                    <EventList eventList={this.props.list} />
+                    <SearchBar onChange={this.handleOnChange} />
+                    <EventList eventList={this.state.list} />
                 </Container>
 				<Footer />
             </Container>
