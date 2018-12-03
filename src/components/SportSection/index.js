@@ -1,46 +1,46 @@
 import React from "react";
-import "./index.css";
 import { Container, Card, Image } from "semantic-ui-react";
 import Football from "../../assets/football.jpg";
-import Basketball from "../../assets/basketball.jpg";
-import Icehockey from "../../assets/icehockey.jpg";
+import basketball from "../../assets/basketball.jpg";
+import icehockey from "../../assets/icehockey.jpg";
+import golf from "../../assets/golf.jpg";
 
+import ski from "../../assets/ski.jpg";
+import cycle from "../../assets/cycle.jpg";
+import aerobics from "../../assets/aerobics.jpg";
+import usfootball from "../../assets/usfootball.jpg";
+import ball from "../../assets/ball.jpg";
+import tennis from "../../assets/tennis.jpg";
+import usfoo from "../../assets/usfoo.jpg";
+import badminton from "../../assets/badminton.jpg";
+
+
+
+
+
+import "./index.css";
 
 const Sport = () => (
-	<Container className="cardSection">
-		<Card className="card">
-			<Image src={Basketball} />
-			<Card.Content>
-				<Card.Header>Basketball</Card.Header>
-				<Card.Meta>
-					<span className='date'>Joined in 2015</span>
-				</Card.Meta>
-				<Card.Description></Card.Description>
-			</Card.Content>
-		</Card>
-		<Card className="card">
-			<Image src={Football} />
-			<Card.Content>
-				<Card.Header>Football</Card.Header>
-				<Card.Meta>
-					<span className='date'>Joined in 2015</span>
-				</Card.Meta>
-				<Card.Description></Card.Description>
-			</Card.Content>
-		</Card>
-		<Card className="card">
-			<Image src={Icehockey} />
-			<Card.Content>
-				<Card.Header>Icehockey</Card.Header>
-				<Card.Meta>
-					<span className='date'>Joined in 2015</span>
-				</Card.Meta>
-				<Card.Description></Card.Description>
-			</Card.Content>
-		</Card>
-
+	<div className="sports">
 		
-	</Container>
+  <Card.Group itemsPerRow={4}>
+    <Card color='red'  image={golf} />
+    <Card color='orange' image={basketball} />
+    <Card color='yellow' image={Football} />
+    <Card color='olive' image={icehockey} />
+    <Card color='green' image={ski} />
+    <Card color='teal' image={cycle} />
+    <Card color='blue' image={aerobics} />
+    <Card color='violet' image={usfootball} />
+    <Card color='purple' image={ball} />
+    <Card color='pink' image={tennis} />
+    <Card color='brown' image={usfoo} />
+    <Card color='grey' image={badminton} />
+  </Card.Group>
+
+	</div>
+	
+
 );
 
 export default Sport;
