@@ -1,13 +1,13 @@
-i {
+table i {
     font-size: 1.3rem !important;
     color: #2185d0 !important;
 }
 
-i.disabled {
+table i.disabled {
     color: #000000 !important;
 }
 
-i.icon.users {
+table i.icon.users {
     margin: 0 1rem;
 }
 
