@@ -54,7 +54,7 @@ class NeedPlayers extends Component {
 						/>
 					</Form.Field>
 
-					<Button type="submit">Submit</Button>
+					{/* <Button type="submit">Submit</Button> */}
 				</Form>
 				<h1>{filteredPlayer}</h1>
 			</Fragment>
