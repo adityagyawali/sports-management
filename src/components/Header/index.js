@@ -31,10 +31,10 @@ export default class MenuExampleInvertedSegment extends Component {
 
 					<Menu.Menu position="right">
 						<Menu.Item>
-							<Button primary>Sign Up</Button>
+							<Button primary><a href="/signUp">Login</a>Sign Up</Button>
 						</Menu.Item>
 						<Menu.Item>
-							<Button primary>Login</Button>
+							<Button primary><a href="/logIn">Login</a></Button>
 						</Menu.Item>
 					</Menu.Menu>
 				</Menu>
