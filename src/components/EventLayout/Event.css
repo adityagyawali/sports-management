@@ -1,0 +1,21 @@
+i {
+    font-size: 1.3rem !important;
+    color: #2185d0 !important;
+}
+
+i.disabled {
+    color: #000000 !important;
+}
+
+i.icon.users {
+    margin: 0 1rem;
+}
+
+.sportCategoryBox{
+    padding: 2px !important;
+    color: #000000 !important;
+}
+.eventTablefixedTitleWidth{
+    width: 25rem !important;
+    cursor: pointer;
+}

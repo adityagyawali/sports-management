@@ -1,53 +1,46 @@
 import React from "react";
+import "./index.css";
 import { Container, Card, Image } from "semantic-ui-react";
 import Football from "../../assets/football.jpg";
-import basketball from "../../assets/basketball.jpg";
-import icehockey from "../../assets/icehockey.jpg";
-import "./index.css";
+import Basketball from "../../assets/basketball.jpg";
+import Icehockey from "../../assets/icehockey.jpg";
+
 
 const Sport = () => (
-	<div className="sports">
-		<Card>
-			<Container>
-				<Image className="basketball" src={basketball} />
-			</Container>
+	<Container className="cardSection">
+		<Card className="card">
+			<Image src={Basketball} />
 			<Card.Content>
-				<Card.Header />
+				<Card.Header>Basketball</Card.Header>
 				<Card.Meta>
-					<span className="basketball" />
+					<span className='date'>Joined in 2015</span>
 				</Card.Meta>
-				<Card.Description>BASKETBALL</Card.Description>
+				<Card.Description></Card.Description>
 			</Card.Content>
-			<Card.Content extra />
 		</Card>
-		<Card>
-			<Container>
-				<Image src={icehockey} />
-			</Container>
+		<Card className="card">
+			<Image src={Football} />
 			<Card.Content>
-				<Card.Header />
+				<Card.Header>Football</Card.Header>
 				<Card.Meta>
-					<span className="icehockey" />
+					<span className='date'>Joined in 2015</span>
 				</Card.Meta>
-				<Card.Description>ICEHOCKEY</Card.Description>
+				<Card.Description></Card.Description>
 			</Card.Content>
-			<Card.Content extra />
+		</Card>
+		<Card className="card">
+			<Image src={Icehockey} />
+			<Card.Content>
+				<Card.Header>Icehockey</Card.Header>
+				<Card.Meta>
+					<span className='date'>Joined in 2015</span>
+				</Card.Meta>
+				<Card.Description></Card.Description>
+			</Card.Content>
 		</Card>
 
-		<Card>
-			<Container>
-				<Image src={Football} />
-			</Container>
-			<Card.Content>
-				<Card.Header />
-				<Card.Meta>
-					<span className="football" />
-				</Card.Meta>
-				<Card.Description>FOOTBALL</Card.Description>
-			</Card.Content>
-			<Card.Content extra />
-		</Card>
-	</div>
+		
+	</Container>
 );
 
 export default Sport;

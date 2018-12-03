@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import MainLayout from "../MainLayout";
+import EventLayout from "../EventLayout";
 
 class App extends Component {
 	render() {
@@ -14,7 +15,9 @@ class App extends Component {
 			<Router>
 				<Switch>
 					<Route path="/app" component={MainLayout} />
-					<Redirect from="/" to="/app" exact />
+					<Route path="/eventList" component={EventLayout} />
+					
+					<Redirect from="/" to="/app" exact />				
 					<Route render={() => <h1>404</h1>} />
 				</Switch>
 			</Router>

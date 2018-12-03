@@ -1,9 +1,9 @@
 import React from "react";
-import Sport from "../SportSection";
 
-import Header from "../Header"; // Adit ==> margin-bottom: 0; border-radius: 0px; can you add this style ?
+import Header from "../Header";
 import Footer from "../Footer";
-import ImageRolling from "../Body";
+import ImageRolling from "../ImageRolling";
+import Sport from "../SportSection";
 
 
 class DisplayMessages extends React.Component {
@@ -12,7 +12,7 @@ class DisplayMessages extends React.Component {
 			<div>
 				<Header />
 				<ImageRolling />
-
+				<h1 style={{textAlign: "center"}}>Explore the sport by categories </h1>
 				<Sport />
 
 				<Footer />
