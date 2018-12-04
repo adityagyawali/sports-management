@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from "react";
-import { Button, Form } from "semantic-ui-react";
-import { playersInfo } from "./players";
+import { Form, Table, Header } from "semantic-ui-react";
 
 class NeedPlayers extends Component {
 	state = {
-		location: "",
-		games: ""
+		date: "",
+		address: "",
+		games: "",
+		time: "",
+		players: "",
+		information: []
 	};
 
 	handleChange = e => {
@@ -18,45 +21,98 @@ class NeedPlayers extends Component {
 		e.preventDefault();
 		console.log("this.state.location", this.state.location);
 		console.log("this.state.games", this.state.games);
+		const { date, address, games, time, players } = this.state;
+		const eventInfo = {
+			date,
+			address,
+			games,
+			time,
+			players
+		};
+		this.setState(state => ({
+			information: state.information.concat(eventInfo),
+			date: "",
+			address: "",
+			games: "",
+			time: "",
+			players: ""
+		}));
 	};
 	render() {
-		// console.log("playerinfo", playersInfo);
-		let filteredPlayer = playersInfo
-			.filter(person => {
-				return (
-					person.Location.toLowerCase().indexOf(
-						this.state.location.toLowerCase()
-					) >= 0
-				);
-			})
-			.map(player => player.FullName);
-
+		const { information } = this.state;
 		return (
 			<Fragment>
-				<h1>Find the players based on location or games</h1>
 				<Form onSubmit={this.handleSubmit}>
-					<Form.Field>
-						<label>Location</label>
-						<input
-							placeholder="Find players from  Helsinki, Espoo...."
+					<Form.Group widths="equal">
+						<Form.Input
+							fluid
+							label="Date"
 							onChange={this.handleChange}
-							value={this.state.location}
-							name="location"
+							value={this.state.date}
+							placeholder="Date"
+							name="date"
 						/>
-					</Form.Field>
-					<Form.Field>
-						<label>Games</label>
-						<input
-							placeholder="Find players who play Football, Cricket..."
+						<Form.Input
+							fluid
+							label="Address"
+							onChange={this.handleChange}
+							value={this.state.address}
+							placeholder="Address"
+							name="address"
+						/>
+						<Form.Input
+							fluid
+							label="Games"
 							onChange={this.handleChange}
 							value={this.state.games}
+							placeholder="Games"
 							name="games"
 						/>
-					</Form.Field>
-
-					{/* <Button type="submit">Submit</Button> */}
+						<Form.Input
+							fluid
+							label="Players"
+							onChange={this.handleChange}
+							value={this.state.players}
+							placeholder="Players"
+							name="players"
+						/>
+						<Form.Input
+							fluid
+							label="Time"
+							onChange={this.handleChange}
+							value={this.state.time}
+							placeholder="Time"
+							name="time"
+						/>
+						<Form.Button>Submit</Form.Button>
+					</Form.Group>
 				</Form>
-				<h1>{filteredPlayer}</h1>
+				<Table celled padded>
+					<Table.Header>
+						<Table.Row>
+							<Table.HeaderCell singleLine>Date</Table.HeaderCell>
+							<Table.HeaderCell>Address</Table.HeaderCell>
+							<Table.HeaderCell>Games</Table.HeaderCell>
+							<Table.HeaderCell>Players</Table.HeaderCell>
+							<Table.HeaderCell>Time</Table.HeaderCell>
+						</Table.Row>
+					</Table.Header>
+					{information.map(event => (
+						<Table.Body>
+							<Table.Row>
+								<Table.Cell>
+									<Header as="h2" textAlign="center">
+										{event.date}
+									</Header>
+								</Table.Cell>
+								<Table.Cell singleLine>{event.address}</Table.Cell>
+								<Table.Cell>{event.games}</Table.Cell>
+								<Table.Cell textAlign="right">{event.players}</Table.Cell>
+								<Table.Cell>{event.time}</Table.Cell>
+							</Table.Row>
+						</Table.Body>
+					))}
+				</Table>
 			</Fragment>
 		);
 	}
