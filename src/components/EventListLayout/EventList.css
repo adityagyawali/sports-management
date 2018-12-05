@@ -1,3 +1,7 @@
+.eventListBox {
+    width: 80% !important;
+}
+
 .eventList {
     text-align: center !important;
 }

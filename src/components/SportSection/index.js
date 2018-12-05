@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Image } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import Football from "../../assets/football.jpg";
 import basketball from "../../assets/basketball.jpg";
 import icehockey from "../../assets/icehockey.jpg";

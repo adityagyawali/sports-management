@@ -13,17 +13,18 @@
     align-items: center;
     display: flex !important;
     color: white;
-    font-size: 1.5rem !important;
-    left: 1rem;
+    font-size: 1rem;
 }
-
 
 .searchInput{
     height: 2rem;
-    padding: 0 2rem 0 1rem;
-    font-size: 1rem !important;
+    margin: 0 2rem;
+    font-weight: bold;
 }
 
-.searchButton {
+
+.searchButton, .searchButton > i {
     color: white;
+    margin: 0 0 !important;
 }
+
