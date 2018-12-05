@@ -31,7 +31,7 @@ class EventDetailHead extends React.Component{
         }else {
             categoryColor = "red";
         }
-        return categoryColor; //
+        return categoryColor; ////
     }
 
     render(){

@@ -35,4 +35,4 @@ class EventDetailsLayout extends React.Component{
     }
 }
 
-export default EventDetailsLayout; //
+export default EventDetailsLayout; ////
