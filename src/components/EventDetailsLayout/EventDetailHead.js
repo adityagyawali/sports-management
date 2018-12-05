@@ -31,7 +31,7 @@ class EventDetailHead extends React.Component{
         }else {
             categoryColor = "red";
         }
-        return categoryColor;
+        return categoryColor; //
     }
 
     render(){
@@ -41,12 +41,10 @@ class EventDetailHead extends React.Component{
 
         return (
             <Container className="eventDetailHeadBox">
-
                 <Container className="eventDetailHead detailHeadLeft">
                 </Container>
                 <Container className="eventDetailHead detailHeadRight">
                     <h3><Icon name="calendar alternate outline"/> {date} </h3>
-                    
                     <h1><Button color={sportCategoryColor} className="sportCategoryBox">{category}</Button><br/>{title}</h1>
                     <Header as='h4' image>
                         <Icon name="map marker alternate"/>
@@ -65,10 +63,7 @@ class EventDetailHead extends React.Component{
                         <Header.Subheader>Organizer</Header.Subheader>
                         </Header.Content>
                     </Header>
-   
-
                 </Container>
-
             </Container>
         );
     }
