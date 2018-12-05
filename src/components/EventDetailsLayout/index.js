@@ -5,6 +5,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 
 import EventDetailHead from "./EventDetailHead";
+import EventDetailBody from "./EventDetailBody";
 
 class EventDetailsLayout extends React.Component{
 
@@ -25,9 +26,10 @@ class EventDetailsLayout extends React.Component{
         return (
 			<Container fluid >
 				<Header />
-                <Container fluid style={{minHeight: "100rem"}}>
+                <Container >
                     <EventDetailHead />
-
+                    <hr />
+                    <EventDetailBody />
                 </Container>
 				<Footer />
             </Container>

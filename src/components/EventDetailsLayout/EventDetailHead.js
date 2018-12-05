@@ -57,9 +57,9 @@ class EventDetailHead extends React.Component{
                     <h4><Button color="blue" className="sportCategoryBox">PLAYERS</Button> {joinedPlayers} / {players} <br /><br />
                         <Button color="blue" className="sportCategoryBox">COST</Button> <Icon name="euro sign"/> {cost} </h4>
                     <Header as='h4' image>
-                        <Image src='https://react.semantic-ui.com/images/avatar/small/lena.png' rounded size='mini' />
+                        <Image src='https://react.semantic-ui.com/images/avatar/small/mark.png' rounded size='small' />
                         <Header.Content>
-                        Lena
+                        Mark
                         <Header.Subheader>Organizer</Header.Subheader>
                         </Header.Content>
                     </Header>

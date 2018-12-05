@@ -1,22 +1,19 @@
 .eventDetailHeadBox{
-    height: 30rem;
-    display: flex !important;
+    height: 25rem;
+    display: inline-flex !important;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     margin: 1rem 0;  
 }
 
 .eventDetailHead {
     position: relative;
     height: 100%;
-    
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    width: 50% !important;
     border-radius: 2%;
 }
 
 .detailHeadLeft {
-    width: 60% !important;
     background-image: url("../../assets/basketball.jpg");
     background-color: #f7f7f7; 
     background-position: center; 
@@ -25,9 +22,8 @@
 }
 
 .detailHeadRight{ 
-    width: 40% !important;
     text-align: left;
-    padding: 2% 3rem;
+    padding: 0 2%;
 }
 
 .detailHeadRight i.icon.child, .detailHeadRight i.icon.users {
@@ -42,4 +38,8 @@
     padding: 2px !important;
     color: white !important;
     width: 7rem; 
+}
+
+.detailHeadRight h1{
+    margin: 0 0;
 }
