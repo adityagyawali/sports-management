@@ -1,22 +1,21 @@
 
 import React from 'react'
 import { Button, Form, Icon, Message, Container, Card } from 'semantic-ui-react'
+import "./FindGuests.css";
 
 
 
 const FindGuests = () => (
   <div>
-
+<Container className="Message">
     <Message color="black" size="big" position="right"
-      
-
      attached
      header='Welcome to Sport Managment APP !' 
      content='Please Specify the Sport and Player you need ' />
     
-    <Form  className='attached fluid segment'>
-
-    <Form.Field label='Choose Sport Catagory' control='select'>
+    <Form  className='Catagory'>
+    
+    <Form.Field className="FormField" label='Choose Sport Catagory' control='select'>
         <option value='football'>Football</option>
         <option value='basketball'>Basketball</option>
         <option value='badminton'>Badminton</option>
@@ -26,7 +25,7 @@ const FindGuests = () => (
         <option value='ski'>Ski</option>
       </Form.Field>
       
-      <Form.Group widths='equal'>
+      <Form.Group className="Form.group" widths='equal'>
       <Form.Field label='Player Pay to Join' control='input' type='checkbox' />
       <Form.Field label='Player Free to Join' control='input' type='checkbox' />
       <Form.Field label='Choose Location' control='select'>
@@ -55,15 +54,17 @@ const FindGuests = () => (
      
 
       <Form.Checkbox inline label='I agree to the terms and conditions' />
-      <Button color='blue'>Submit</Button>
+      <Button color='green'>Submit</Button>
 
     </Form>
     
 
-    <Message attached='bottom' warning>
+    <Message color="black" attached='bottom' warning>
       <Icon name='help' />
-      Already signed up?&nbsp;<a href='#'>FindGuests here</a>&nbsp;instead.
+      Sign Up to Post on this Form &nbsp;<a href='#'> Go back to the Top here</a>&nbsp;
     </Message>
+    </Container>   
+
   </div>
 );
 
