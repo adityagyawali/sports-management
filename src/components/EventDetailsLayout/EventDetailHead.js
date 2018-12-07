@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Image, Header, Button, Icon} from 'semantic-ui-react';
 
 import "./EventDetailHead.css";
-
+import Mark from '../../assets/mark.png';
 
 class EventDetailHead extends React.Component{
     static defaultProps = {
@@ -57,7 +57,7 @@ class EventDetailHead extends React.Component{
                     <h4><Button color="blue" className="sportCategoryBox">PLAYERS</Button> {joinedPlayers} / {players} <br /><br />
                         <Button color="blue" className="sportCategoryBox">COST</Button> <Icon name="euro sign"/> {cost} </h4>
                     <Header as='h4' image>
-                        <Image src='https://react.semantic-ui.com/images/avatar/small/mark.png' rounded size='small' />
+                        <Image src={Mark} rounded size='small' />
                         <Header.Content>
                         Mark
                         <Header.Subheader>Organizer</Header.Subheader>
