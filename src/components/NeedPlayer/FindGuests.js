@@ -5,7 +5,6 @@ import {
 	Icon,
 	Message,
 	Container,
-	Card
 } from "semantic-ui-react";
 import "./FindGuests.css";
 
@@ -90,7 +89,7 @@ const FindGuests = () => (
 			<Message color="black" attached="bottom" warning>
 				<Icon name="help" />
 				Sign Up to Post on this Form &nbsp;
-				<a href="#"> Go back to the Top here</a>
+				<a href="/app"> Go back to the Top here</a>
 				&nbsp;
 			</Message>
 		</Container>

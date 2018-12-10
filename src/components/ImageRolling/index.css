@@ -8,6 +8,7 @@
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
+    font-family: sans-serif;
 }
 
 .mainInfoBox{
@@ -16,13 +17,13 @@
 }
 
 .mainTitle {
-    font-size: 4.5rem;
+    font-size: 3rem;
 }
 
 .mainDescription{
     font-size: 2rem;
 }
 
-a, a:hover {
+.mainInfoBox a, a:hover {
     color: white;
 }

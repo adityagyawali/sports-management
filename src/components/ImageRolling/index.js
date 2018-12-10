@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Button } from "semantic-ui-react";
 import "./index.css";
+
+//image
 import mainFootball from "../../assets/mainFootball.jpg";
 import mainBasketball from "../../assets/mainBasketball.jpg";
 import mainIceHockey from "../../assets/mainIceHockey.jpg";
@@ -41,16 +43,15 @@ class ImageRolling extends Component {
 				style={{ backgroundImage: "url(" + this.state.src + ")" }}
 			>
 				<Container className="mainInfoBox" fluid>
-					<h1 className="mainTitle"> What's Your Sports ? </h1>
+					<h1 className="mainTitle"> WHAT IS YOUR SPORTS ? </h1>
 					<p className="mainDescription">Join the sports you like now !</p>
 					<br />
-					<Link to="/FindGuests">
-						{" "}
-						<Button color="red">Find guests</Button>
+					<Link to="/findGuests">
+						<Button color="red">Find Guests</Button>
 					</Link>
-					<Button color="blue">
-						<a href="/eventList">Find events</a>
-					</Button>
+					<Link to="/eventList">
+						<Button color="blue">Find Events</Button>
+					</Link>
 				</Container>
 			</Container>
 		);
