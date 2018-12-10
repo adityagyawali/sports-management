@@ -16,7 +16,7 @@ class EventList extends React.Component {
         
     
         return (
-            <Container>
+            <Container className="eventListBox">
                 <h1>All the sports waiting for you !</h1>
                 <Table sortable celled className="eventList">
                 <Table.Header>

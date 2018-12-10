@@ -34,7 +34,7 @@ class EventImage extends React.Component {
         const {title, description} = this.state;
         return (
             <Container className="eventImageBox" fluid style={{backgroundImage: "url("+this.state.image+")"}}>
-                <Container className="eventInfoBox" fluid>
+                <Container className="eventInfoBox">
                     <h1 className="eventTitle"> {title} </h1>
                     <p className="eventDescription">{description}</p>
                     <Button color='blue'><a href="/signUp">Sign me up!</a></Button>

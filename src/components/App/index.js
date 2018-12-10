@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 
 import MainLayout from "../MainLayout";
-import EventLayout from "../EventLayout";
+import EventListLayout from "../EventListLayout";
+import EventDetailsLayout from "../EventDetailsLayout";
 import LogIn from '../SignUpLogin/LogIn';
 import FindGuests from '../NeedPlayer/FindGuests';
 
@@ -17,7 +18,8 @@ class App extends Component {
 			<Router>
 				<Switch>
 					<Route path="/app" component={MainLayout} />
-					<Route path="/eventList" component={EventLayout} />
+					<Route path="/eventList" component={EventListLayout} />
+					<Route path="/eventDetails" component={EventDetailsLayout}/>
 					<Route path="/logIn" component={LogIn} />
 					<Route path="/FindGuests" component={FindGuests} />
 

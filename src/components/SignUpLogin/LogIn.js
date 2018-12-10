@@ -19,9 +19,7 @@ const formStyle = {
   marginTop: 100,
   width: 550,
 }
-const title = {
-  marginLeft: 150
-}
+
 
 const info = {
   textAlign: 'center'

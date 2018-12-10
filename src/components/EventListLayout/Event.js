@@ -44,15 +44,16 @@ class Event extends React.Component {
 
 
     render(){ 
-        let {title, category, date, joinedPlayers, players, time, address, region, cost} = this.props.event;
+        let {id, title, category, date, joinedPlayers, players, time, address, region, cost} = this.props.event;
         const playerIconsList = this.handlePlayerIcons();
         const sportCategoryColor = this.handleCaegoryColor(category);
+        
         return (
             <Table.Row>
                 <Table.Cell className="eventTablefixedTitleWidth" >
                     <Header>
                         <Header.Content>
-                            {title}  
+                            <a href={'/eventDetails/' + id}>{title}</a>
                             <Header.Subheader><Button color={sportCategoryColor} className="sportCategoryBox"><small>{category}</small></Button></Header.Subheader>
                         </Header.Content>
                     </Header>
