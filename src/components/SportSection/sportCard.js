@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 class sportCard extends React.Component {
     static defaultProps = {
@@ -11,7 +12,7 @@ class sportCard extends React.Component {
         let imageTitle = image.toString().split("/")[3].split(".")[0].toUpperCase();
         return(
             <Card>
-                <Image className="sportImg" style={{background: "url("+ image + ")"}} />
+                <Link to={"/eventList?"+ imageTitle}><div className="sportImg" style={{background: "url("+ image + ")"}}></div></Link>
                 <Card.Content>
                 <Card.Header>{imageTitle}</Card.Header>
                 </Card.Content>
