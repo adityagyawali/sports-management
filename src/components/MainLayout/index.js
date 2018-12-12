@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "../Header";
 import Footer from "../Footer";
-import ImageRolling from "../ImageRolling";
+import MainImageRolling from "./MainImageRolling";
 import SportCardSection from "../SportSection";
 
 
@@ -12,7 +12,7 @@ class MainLayout extends React.Component {
 			<div>
 				<Header />
 				
-				<ImageRolling />
+				<MainImageRolling />
 				<SportCardSection />
 
 				<Footer />

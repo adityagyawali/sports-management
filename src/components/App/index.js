@@ -10,7 +10,7 @@ import MainLayout from "../MainLayout";
 import EventListLayout from "../EventListLayout";
 import EventDetailsLayout from "../EventDetailsLayout";
 import LogIn from '../SignUpLogin/LogIn';
-import FindGuests from '../NeedPlayer/FindGuests';
+import NeedPlayerLayout from '../NeedPlayerLayout';
 
 class App extends Component {
 	render() {
@@ -21,7 +21,7 @@ class App extends Component {
 					<Route path="/eventList" component={EventListLayout} />
 					<Route path="/eventDetails" component={EventDetailsLayout}/>
 					<Route path="/logIn" component={LogIn} />
-					<Route path="/FindGuests" component={FindGuests} />
+					<Route path="/findGuests" component={NeedPlayerLayout} />
 
 
 					<Redirect from="/" to="/app" exact />				

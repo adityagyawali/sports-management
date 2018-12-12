@@ -1,0 +1,59 @@
+.findGuest .header, .findGuestForm {
+    margin: 5% auto !important;
+    text-align: center;
+}
+
+.findGuest .findGuestForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.findGuest label{
+    width: 15rem !important;
+    font-size: 1.3rem !important;
+}
+
+.findGuest .findGuestForm_input {
+    height: 2rem;
+    width: 35rem !important;
+    font-weight: bold;
+}
+
+.findGuest .title_input {
+    width: 35rem !important;
+    font-weight: bold; 
+}
+
+.findGuest input, .findGuest .title_input{
+    font-weight: bold; 
+}
+
+.findGuest .buttons{
+    margin: 0 2rem 0 0;
+}
+
+.findGuest .smallLabel{
+    font-size: 1rem !important;
+    font-weight: bold;
+}
+.findGuest .time_input{
+    margin: 0 1rem;
+}
+
+.findGuest .time_input  input {
+    width: 5rem !important;
+}
+
+.findGuest .description_input{
+    height: 20rem !important;
+}
+
+.findGuest .submitButton {
+    margin: 10% auto 0% auto;
+}
+
+.findGuest .submitButton button{
+    margin: 0 1%;
+}
