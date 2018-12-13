@@ -20,10 +20,10 @@ export default class MenuExampleInvertedSegment extends Component {
 						href="/app"
 					/>
 					<Menu.Item
-						name="Find Guests"
-						active={activeItem === "Find Guests"}
+						name="Need Players"
+						active={activeItem === "Need Players"}
 						onClick={this.handleItemClick}
-						href="/findGuests"
+						href="/needPlayers"
 					/>
 					<Menu.Item
 						name="Find Events"

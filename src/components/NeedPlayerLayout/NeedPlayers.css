@@ -46,6 +46,10 @@
     width: 5rem !important;
 }
 
+.findGuest .findGuestForm_input .contactInput {
+    width: 18rem !important;
+}   
+
 .findGuest .description_input{
     height: 20rem !important;
 }

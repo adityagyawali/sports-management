@@ -46,8 +46,8 @@ class ImageRolling extends Component {
 					<h1 className="mainTitle"> WHAT IS YOUR SPORTS ? </h1>
 					<p className="mainDescription">Join the sports you like now !</p>
 					<br />
-					<Link to="/findGuests">
-						<Button color="red">Find Guests</Button>
+					<Link to="/needPlayers">
+						<Button color="red">Need Players</Button>
 					</Link>
 					<Link to="/eventList">
 						<Button color="blue">Find Events</Button>

@@ -1,32 +1,13 @@
 import React from "react";
 import {Form,Container, Dropdown, Divider, Input, Button} from "semantic-ui-react";
-import "./FindGuests.css";
+import "./NeedPlayers.css";
 
-class FindGuests extends React.Component {
-		
-	static defaultProps = {
-        categoryOptions : [
-            { key: 1, text: 'ALL', value: 'ALL' },
-            { key: 2, text: 'BASKET BALL', value: 'BASKET BALL' },
-            { key: 3, text: 'FOOT BALL', value: 'FOOT BALL' },
-            { key: 4, text: 'BADMINTON', value: 'BADMINTON' },
-            { key: 5, text: 'ICE HOCKEY', value: 'ICE HOCKEY' },
-        ],
-        regionOptions : [
-            { key: 1, text: 'ALL', value: 'ALL' },
-            { key: 2, text: 'Helsinki', value: 'Helsinki' },
-            { key: 3, text: 'Espoo', value: 'Espoo' },
-            { key: 4, text: 'Vantaa', value: 'Vantaa' },
-        ],
-        costOptions : [
-            { key: 1, text: 'Hi, lets have fun', value: 'Hi, lets have fun' },
-            { key: 2, text: 'Hi, open for everyone', value: 'Hi, open for everyone' },
-            { key: 3, text: 'Hi, We need skillful players', value: 'Hi, We need skillful players' },
-        ]
+import {addToNeedPlayerList} from '../../actions/needPlayersActions';
+import {connect} from 'react-redux';
 
-	}
-	
-	state = {	
+class NeedPlayers extends React.Component {
+
+	state = {
 		category: "",
 		title:"",
 		date: "", 
@@ -36,22 +17,26 @@ class FindGuests extends React.Component {
 		hour:"",
 		minute: "",
 		players: "",
+		joinedPlayers: 0,
 		duration:"", 
 		cost: "",
+		mobile: "",
+		email: "",
 		description:""
+
 	}
-	
-	handleChange = (e, { value, name }) => this.setState({ [name]: value })
-	handleSearchChange = (e, { name, searchQuery }) => this.setState({ [name]: searchQuery })
-	handleInput = (e) => {
-		this.setState({
-			[e.target.name] : e.target.value
-		});
-		console.log(this.state);
-	} 
-	
+
+	handleChange = (e, { value, name }) => this.setState({ [name] : value })
+	handleSearchChange = (e, { name, searchQuery }) => this.setState({ [name] : searchQuery })
+	handleInput = (e) => { this.setState({ [e.target.name] : e.target.value	});	} 
+	handleSubmit = (e) => {
+		e.preventDefault();
+		this.props.dispatch(addToNeedPlayerList(this.state));
+	}
+
+
 	render (){
-		const {categoryOptions,regionOptions, costOptions } = this.props;
+		const {categoryOptions,regionOptions } = this.props;
 		return (
 			<Container fluid className="findGuest">
 				<Container className="header">
@@ -60,7 +45,7 @@ class FindGuests extends React.Component {
 				</Container>
 				<Divider />
 				<Container className="findGuestForm">
-					<Form>
+					<Form onSubmit={this.handleSubmit}>
 						<Form.Field inline>
 							<label htmlFor="category">Category: </label>
 							<Dropdown 
@@ -81,8 +66,7 @@ class FindGuests extends React.Component {
 							<Input name="title" placeholder='Describe the event shortly ...'
 									type="text" onChange={this.handleInput} 
 									className="title_input"
-									required />
-
+							 />
 						</Form.Field>						
 						
 						<br/>
@@ -117,17 +101,10 @@ class FindGuests extends React.Component {
 						</Form.Field>
 						<Form.Field inline>
 							<label htmlFor="address">Address: </label>
-							<Dropdown 
-								name="address"
-								className="findGuestForm_input"
-								clearable selection search
-								autoComplete="true"
-								options={regionOptions}
-								onChange={this.handleChange}
-								onSearchChange={this.handleSearchChange}
-								value={this.state.address}
-								placeholder="The Address is ..." 
-							/>
+							<Input name="address" placeholder='Describe the address ...'
+									type="text" onChange={this.handleInput} 
+									className="title_input"
+							 />
 						</Form.Field> 						
 						
 						<Form.Field inline>
@@ -168,31 +145,20 @@ class FindGuests extends React.Component {
 						<br/>
 						<Form.Field inline>
 							<label htmlFor="players">Players : </label>
-							<Dropdown 
-								name="players"
-								className="findGuestForm_input"
-								clearable selection search
-								autoComplete="true"
-								options={costOptions}
-								onChange={this.handleChange}
-								onSearchChange={this.handleSearchChange}
-								value={this.state.players}
-								placeholder="How many Players :" 
+							<Input name="players" placeholder='Describe the players ...'
+									type="number" onChange={this.handleInput} 
+									className="title_input"
+								 
 							/>
 						</Form.Field> 
 						
 						<Form.Field inline>
 							<label htmlFor="duration">Duration: </label>
-							<Dropdown 
-								name="duration"
-								className="findGuestForm_input"
-								clearable selection search
-								autoComplete="true"
-								options={costOptions}
-								onChange={this.handleChange}
-								onSearchChange={this.handleSearchChange}
-								value={this.state.duration}
-								placeholder="How many Hours ..." 
+							<Input name="duration" placeholder='Describe the duration as hour ...'
+									type="number" onChange={this.handleInput} 
+									className="title_input"
+									min="1" max="5"
+									 
 							/>
 						</Form.Field> 
 						
@@ -200,16 +166,11 @@ class FindGuests extends React.Component {
 						<br/>
 						<Form.Field inline>
 							<label htmlFor="cost">Cost: </label>
-							<Dropdown 
-								name="cost"
-								className="findGuestForm_input"
-								clearable selection search
-								autoComplete="true"
-								options={costOptions}
-								onChange={this.handleChange}
-								onSearchChange={this.handleSearchChange}
-								value={this.state.cost}
-								placeholder="How much the Cost ..." 
+							<Input name="cost" label="Euro" placeholder='Describe the cost per person ...'
+									type="number" onChange={this.handleInput} 
+									className="title_input"
+									min="0" max="30"
+									 
 							/>
 						</Form.Field> 
 						<br/>
@@ -219,16 +180,16 @@ class FindGuests extends React.Component {
 						<br/>
 						<Form.Field inline>
 							<label htmlFor="contact">Contact: </label>
-							<span name="contact">
+							<span name="contact" className="findGuestForm_input">
 
 								<Input name="mobile" label='Mobile' placeholder='0466298287'
-									type="text" onChange={this.handleInput} 
-									
-									required />
+									className="contactInput"
+									type="text" onChange={this.handleInput}									
+									 />
 							
-								<Input name="email" label='Email' 
-									onChange={this.handleInput}
-									placeholder='myEmail@com' type="email" required/>
+								<Input name="email" label='Email' placeholder='myEmail@mail.com' 
+									className="contactInput"
+									type="email" onChange={this.handleInput} />
 							</span>
 						</Form.Field>
 
@@ -236,9 +197,7 @@ class FindGuests extends React.Component {
 							<label htmlFor="description">Description: </label>
 							<textarea name="description" className="findGuestForm_input description_input"
 								onChange={this.handleInput}
-							></textarea>
-
-							
+							></textarea>	
 						</Form.Field> 
 						
 						<Container className="submitButton">
@@ -247,13 +206,26 @@ class FindGuests extends React.Component {
 						</Container>
 					</Form>
 				</Container>
-
-			
-			
 			</Container>
 		
 		);
 	}
 }
 
-export default FindGuests;
+NeedPlayers.defaultProps = {
+	categoryOptions : [
+		{ key: 1, text: 'ALL', value: 'ALL' },
+		{ key: 2, text: 'BASKET BALL', value: 'BASKET BALL' },
+		{ key: 3, text: 'FOOT BALL', value: 'FOOT BALL' },
+		{ key: 4, text: 'BADMINTON', value: 'BADMINTON' },
+		{ key: 5, text: 'ICE HOCKEY', value: 'ICE HOCKEY' },
+	],
+	regionOptions : [
+		{ key: 1, text: 'ALL', value: 'ALL' },
+		{ key: 2, text: 'Helsinki', value: 'Helsinki' },
+		{ key: 3, text: 'Espoo', value: 'Espoo' },
+		{ key: 4, text: 'Vantaa', value: 'Vantaa' },
+	]
+}
+
+export default connect()(NeedPlayers);
