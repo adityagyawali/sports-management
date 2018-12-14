@@ -10,8 +10,8 @@ class EventList extends React.Component {
     render(){
 
         const {eventList} = this.props;
-        let tableBodyList = eventList.map( event => {
-            return (<Event key={event.id} event={event}/>);
+        let tableBodyList = eventList.map( (event, index) => {
+            return (<Event key={"event_"+ index} event={event}/>);
         });
         
     

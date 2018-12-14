@@ -44,7 +44,8 @@ class Event extends React.Component {
 
 
     render(){ 
-        let {id, title, category, date, joinedPlayers, players, time, address, region, cost} = this.props.event;
+        let {id, title, category, date, joinedPlayers, players, amPm, hour, minute, address, region, cost} = this.props.event;
+        let time = amPm + " " + hour + " : " + minute; 
         const playerIconsList = this.handlePlayerIcons();
         const sportCategoryColor = this.handleCaegoryColor(category);
         

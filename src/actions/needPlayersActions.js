@@ -30,7 +30,7 @@ export const addToNeedPlayerList = (item)=>{
             body: JSON.stringify(item)
         }
 
-        fetch("/addToNeedPlayersList", postObject).then( (response) => {
+        fetch("/api/addToNeedPlayersList", postObject).then( (response) => {
             if(response.ok){
                 response.json().then((resData) => {
                     dispatch(addToNeedplayerListSuccess(resData));
