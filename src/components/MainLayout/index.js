@@ -2,18 +2,18 @@ import React from "react";
 
 import Header from "../Header";
 import Footer from "../Footer";
-import ImageRolling from "../ImageRolling";
-import Sport from "../SportSection";
+import MainImageRolling from "./MainImageRolling";
+import SportCardSection from "../SportSection";
 
 
-class DisplayMessages extends React.Component {
+class MainLayout extends React.Component {
 	render() {
 		return (
 			<div>
 				<Header />
-				<ImageRolling />
-				<h1 style={{textAlign: "center"}}>Explore the sport by categories </h1>
-				<Sport />
+				
+				<MainImageRolling />
+				<SportCardSection />
 
 				<Footer />
 			</div>
@@ -21,4 +21,4 @@ class DisplayMessages extends React.Component {
 	}
 }
 
-export default DisplayMessages;
+export default MainLayout;

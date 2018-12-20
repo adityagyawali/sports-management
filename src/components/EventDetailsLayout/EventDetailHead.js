@@ -5,20 +5,8 @@ import "./EventDetailHead.css";
 import Mark from '../../assets/mark.png';
 
 class EventDetailHead extends React.Component{
-    static defaultProps = {
-        id:8,  
-        title:"Just for fun, come and play", 
-        category: "BASKET BALL",
-        date: 'Tue, 04 Dec', 
-        players: 10, 
-        joinedPlayers: 3, 
-        time: '19:00', 
-        address: "Kaj Franckin katu 4", 
-        region: "Helsinki",  
-        cost: 10 
-    }
 
-    handleCaegoryColor = (category) => {
+    handleCategoryColor = (category) => {
         let categoryColor;
         if(category === "BASKET BALL"){
             categoryColor = "orange";
@@ -31,13 +19,13 @@ class EventDetailHead extends React.Component{
         }else {
             categoryColor = "red";
         }
-        return categoryColor; ////
+        return categoryColor;
     }
 
+
     render(){
-        const {title, category, date, players, joinedPlayers, time, address, region, cost} = this.props;
-        const sportCategoryColor = this.handleCaegoryColor(category);
-       
+        const { title, category, date, joinedPlayers, players, amPm, hour, minute, address, region, cost} = this.props.event;
+        const sportCategoryColor = this.handleCategoryColor(category);
 
         return (
             <Container className="eventDetailHeadBox">
@@ -49,7 +37,7 @@ class EventDetailHead extends React.Component{
                     <Header as='h4' image>
                         <Icon name="map marker alternate"/>
                         <Header.Content>
-                        {time}<br/>
+                        {amPm.toUpperCase()} {hour}:{minute}<br/>
                         {address}, {region}
                         </Header.Content>
                     </Header>
@@ -59,7 +47,7 @@ class EventDetailHead extends React.Component{
                     <Header as='h4' image>
                         <Image src={Mark} rounded size='small' />
                         <Header.Content>
-                        Mark
+                        Mark (UserName)
                         <Header.Subheader>Organizer</Header.Subheader>
                         </Header.Content>
                     </Header>
@@ -67,6 +55,7 @@ class EventDetailHead extends React.Component{
             </Container>
         );
     }
+    
 }
 
 export default EventDetailHead;
