@@ -1,5 +1,6 @@
 import React from "react";
 import {Form,Container, Dropdown, Divider, Input, Button} from "semantic-ui-react";
+import {withRouter} from 'react-router-dom'
 import "./NeedPlayers.css";
 
 import {addToNeedPlayerList} from '../../actions/needPlayersActions';
@@ -32,6 +33,7 @@ class NeedPlayers extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.dispatch(addToNeedPlayerList(this.state));
+		this.props.history.push('/eventList')
 	}
 
 
@@ -227,5 +229,4 @@ NeedPlayers.defaultProps = {
 		{ key: 4, text: 'Vantaa', value: 'Vantaa' },
 	]
 }
-
-export default connect()(NeedPlayers);
+export default withRouter(connect()(NeedPlayers));

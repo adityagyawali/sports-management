@@ -43,9 +43,10 @@ class Event extends React.Component {
     }
 
 
+
     render(){ 
-        let {id, title, category, date, joinedPlayers, players, amPm, hour, minute, address, region, cost} = this.props.event;
-        let time = amPm + " " + hour + " : " + minute; 
+        const {_id, title, category, date, joinedPlayers, players, amPm, hour, minute, address, region, cost} = this.props.event;
+        const time = amPm + " " + hour + " : " + minute; 
         const playerIconsList = this.handlePlayerIcons();
         const sportCategoryColor = this.handleCaegoryColor(category);
         
@@ -54,7 +55,7 @@ class Event extends React.Component {
                 <Table.Cell className="eventTablefixedTitleWidth" >
                     <Header>
                         <Header.Content>
-                            <a href={'/eventDetails/' + id}>{title}</a>
+                            <a href={'/eventDetails/' + _id}>{title}</a>
                             <Header.Subheader><Button color={sportCategoryColor} className="sportCategoryBox"><small>{category}</small></Button></Header.Subheader>
                         </Header.Content>
                     </Header>
