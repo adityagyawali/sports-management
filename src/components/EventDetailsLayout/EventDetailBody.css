@@ -1,0 +1,66 @@
+.detailInfoBoxOuter {
+    margin: 3rem 0;
+}
+
+.detailInfoBox {
+    height: 16rem;
+    margin: 0 3rem;
+    display: inline-flex !important; 
+}
+
+.detailInfo {
+    position: relative;
+    height: 100%;  
+}
+
+.detailInfoLeft {
+    width: 30% !important;
+    height: 100%;
+}
+
+.detailInfoButtonBox {
+    width: 100%;
+    height: 4rem;
+    margin: auto;
+    border: 1px solid black;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.detailInfoButtonBox:hover, .clicked {
+    width: 100%;
+    height: 4rem;
+    margin: auto;
+    border: 1px solid black;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    background-color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.detailInfoRight {
+    width: 65% !important;
+    height: 100%;
+    border: 1px solid black;  
+    border-radius: 5px;
+
+    display:flex !important;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+}

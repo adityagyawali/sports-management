@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Menu, Segment, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import "./index.css";
 
 export default class MenuExampleInvertedSegment extends Component {
-	state = { activeItem: "home" };
+	state = { activeItem: "Home" };
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -14,31 +14,34 @@ export default class MenuExampleInvertedSegment extends Component {
 			<Segment inverted>
 				<Menu inverted secondary>
 					<Menu.Item
-						name="home"
-						active={activeItem === "home"}
+						name="Home"
+						active={activeItem === "Home"}
 						onClick={this.handleItemClick}
+						href="/app"
 					/>
 					<Menu.Item
-						name="Today's Ball"
-						active={activeItem === "today's ball"}
+						name="Need Players"
+						active={activeItem === "Need Players"}
 						onClick={this.handleItemClick}
+						href="/needPlayers"
 					/>
 					<Menu.Item
-						name="Competitions"
-						active={activeItem === "Competitions"}
+						name="Find Events"
+						active={activeItem === "Find Events"}
 						onClick={this.handleItemClick}
+						href="/eventList"
 					/>
 
 					<Menu.Menu position="right">
 						<Menu.Item>
-							<Link to="/register">
-								<Button primary>Sign Up</Button>{" "}
-							</Link>
+							<Button primary>
+								<a href="/signUp">Sign Up</a>
+							</Button>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="/login">
-								<Button primary>Login</Button>
-							</Link>
+							<Button primary>
+								<a href="/logIn">Log In</a>
+							</Button>
 						</Menu.Item>
 					</Menu.Menu>
 				</Menu>
