@@ -20,6 +20,7 @@ class EventDetailHead extends React.Component{
         let {category} = this.props.event;
         let categoryColor;
         let eventPic;
+
         if(category === "BASKET BALL"){
             categoryColor = "orange";
             eventPic = eventBasketball
@@ -27,7 +28,7 @@ class EventDetailHead extends React.Component{
             categoryColor = "green";
             eventPic = eventFootball
         }else if(category === "BADMINTON"){
-            categoryColor = "violet";
+            categoryColor = "teal";
             eventPic = eventBadminton;
         }else if(category === "FLOOR BALL"){
             categoryColor = "blue";
