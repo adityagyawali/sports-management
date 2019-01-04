@@ -32,8 +32,9 @@ class NeedPlayers extends React.Component {
 	handleInput = (e) => { this.setState({ [e.target.name] : e.target.value	});	} 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.dispatch(addToNeedPlayerList(this.state));
-		this.props.history.push('/eventList')
+		this.props.dispatch(addToNeedPlayerList(this.state, () => { 
+			this.props.history.push('/eventList'); 
+		}));
 	}
 
 
@@ -118,7 +119,7 @@ class NeedPlayers extends React.Component {
 											<input name="amPm"
 												type="radio"  
 												onClick={this.handleInput}												
-												value="am"
+												value="AM"
 											/>
 											<span>AM</span>
 										</label>
@@ -128,7 +129,7 @@ class NeedPlayers extends React.Component {
 											<input name="amPm"
 													type="radio"  
 													onClick={this.handleInput}
-													value="pm"
+													value="PM"
 												/>
 											<span>PM</span>
 										</label>
@@ -136,7 +137,7 @@ class NeedPlayers extends React.Component {
 								</Button.Group>
 								<Input name="hour"  label='Hour' placeholder='9' 
 									type="number" onChange={this.handleInput}
-									className="time_input" min="0" max="12"/>
+									className="time_input" min="1" max="12"/>
 								<Input name="minute"  label='Minutes' placeholder='30' 
 									type="number" onChange={this.handleInput} 
 									className="time_input" min="0" max="59"/>
@@ -150,7 +151,7 @@ class NeedPlayers extends React.Component {
 							<Input name="players" placeholder='Describe the players ...'
 									type="number" onChange={this.handleInput} 
 									className="title_input"
-								 
+									min="1" max="15"
 							/>
 						</Form.Field> 
 						

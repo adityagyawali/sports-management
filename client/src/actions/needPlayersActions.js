@@ -1,3 +1,4 @@
+
 export const ADD_TO_NEEDPLAYERLIST_SUCCESS = "ADD_TO_NEEDPLAYERLIST_SUCCESS";
 export const ADD_TO_NEEDPLAYERLIST_FAILED = "ADD_TO_NEEDPLAYERLIST_FAILED";
 
@@ -20,7 +21,7 @@ const addToNeedplayerListFailed = (error) => {
 
 //action creator
 
-export const addToNeedPlayerList = (item)=>{
+export const addToNeedPlayerList = (item, goToEventList)=>{
     return dispatch => {
         let postObject = {
             method: "POST",
@@ -32,19 +33,19 @@ export const addToNeedPlayerList = (item)=>{
 
         fetch("/api/addToNeedPlayersList", postObject).then( (response) => {
             if(response.ok){
-                response.json().then((resData) => {
+                response.json().then( (resData) => {
                     dispatch(addToNeedplayerListSuccess(resData));
+                    goToEventList();
                 }).catch((error) => {
                     dispatch(addToNeedplayerListFailed("response json.stringfy problem:" + error ));
+                    
                 })
-                
-
             }else {
                 dispatch(addToNeedplayerListFailed("Response not ok. Status:" + response.status ));
-                
             }
         }).catch( 
             (error) => {dispatch(addToNeedplayerListFailed("Server responded with error: " + error))}
         )
+
     }
 }

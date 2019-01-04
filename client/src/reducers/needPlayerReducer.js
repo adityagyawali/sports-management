@@ -2,12 +2,9 @@ import {ADD_TO_NEEDPLAYERLIST_SUCCESS, ADD_TO_NEEDPLAYERLIST_FAILED} from '../ac
 
 
 function getInitialState (){
-    let list=[];
-    let error = "";
-    
     return {
-        list: list,
-        error: error
+        list: [],
+        error: ""
     }
 }
 

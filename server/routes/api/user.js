@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../../models/User");
 
+
+
 router.get("/test", (req, res) => {
 	res.send("test works");
 });
@@ -67,5 +69,7 @@ router.post("/login", (req, res) => {
 		});
 	});
 });
+
+
 
 module.exports = router;

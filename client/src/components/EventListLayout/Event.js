@@ -2,10 +2,10 @@ import React from 'react';
 import {Table, Icon, Header, Button } from 'semantic-ui-react';
 import './Event.css';
 
+
 class Event extends React.Component {       
 
-    handlePlayerIcons = ()=>{
-        const {joinedPlayers, players} = this.props.event;
+    handlePlayerIcons = (players, joinedPlayers) => {
         let playerIconsList = [];
         
         if (players === "Team"){
@@ -45,32 +45,34 @@ class Event extends React.Component {
 
 
     render(){ 
-        const {_id, title, category, date, joinedPlayers, players, amPm, hour, minute, address, region, cost} = this.props.event;
+        const {_id, title, category, date, players, joinedPlayers, amPm, hour, minute, address, region, cost} = this.props.event;
         const time = amPm + " " + hour + " : " + minute; 
-        const playerIconsList = this.handlePlayerIcons();
+        const playerIconsList = this.handlePlayerIcons(players, joinedPlayers);
         const sportCategoryColor = this.handleCaegoryColor(category);
+
         
         return (
-            <Table.Row>
-                <Table.Cell className="eventTablefixedTitleWidth" >
-                    <Header>
-                        <Header.Content>
-                            <a href={'/eventDetails/' + _id}>{title}</a>
-                            <Header.Subheader><Button color={sportCategoryColor} className="sportCategoryBox"><small>{category}</small></Button></Header.Subheader>
-                        </Header.Content>
-                    </Header>
-                </Table.Cell>
-                <Table.Cell>{date}</Table.Cell>
-                <Table.Cell>
-                    {playerIconsList} <br/>
-                    {joinedPlayers} / {players}
-                </Table.Cell>
-                <Table.Cell>{time}</Table.Cell>
-                <Table.Cell>{address}, <br/> {region}</Table.Cell>
-                <Table.Cell>{cost}</Table.Cell>
-            </Table.Row>
+        <Table.Row>
+            <Table.Cell className="eventTablefixedTitleWidth" >
+                <Header>
+                    <Header.Content>
+                        <a href={'/eventDetails/' + _id}>{title}</a>
+                        <Header.Subheader><Button color={sportCategoryColor} className="sportCategoryBox"><small>{category}</small></Button></Header.Subheader>
+                    </Header.Content>
+                </Header>
+            </Table.Cell>
+            <Table.Cell>{date}</Table.Cell>
+            <Table.Cell>
+                {playerIconsList} <br/>
+                {joinedPlayers} / {players}
+            </Table.Cell>
+            <Table.Cell>{time}</Table.Cell>
+            <Table.Cell>{address}, <br/> {region}</Table.Cell>
+            <Table.Cell>{cost}</Table.Cell>
+        </Table.Row>
         );
     }
 }
+
 
 export default Event;
