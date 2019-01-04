@@ -14,7 +14,7 @@ import Aerobics from "../../assets/aerobics.jpg";
 import MotorCycle from "../../assets/motorCycle.jpg";
 import VolleyBall from "../../assets/volleyBall.jpg";
 import Tennis from "../../assets/tennis.jpg";
-import UsFootball from "../../assets/usfootball.jpg";
+import UsFootball from "../../assets/usFootball.jpg";
 import Badminton from "../../assets/badminton.jpg";
 
 class Sport extends React.Component {
