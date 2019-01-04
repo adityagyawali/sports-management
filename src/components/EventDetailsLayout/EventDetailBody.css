@@ -1,66 +1,49 @@
-.detailInfoBoxOuter {
-    margin: 3rem 0;
+.detailBox{
+    margin: 5% auto;
 }
 
-.detailInfoBox {
-    height: 16rem;
-    margin: 0 3rem;
-    display: inline-flex !important; 
+.detailInfoBox, .detailInfo{
+    display: flex !important;
+    justify-content: flex-end;
+    text-align: center;
+    
 }
 
 .detailInfo {
-    position: relative;
-    height: 100%;  
+    min-height: 7rem;
+    padding: 1rem;
 }
 
 .detailInfoLeft {
-    width: 30% !important;
-    height: 100%;
-}
-
-.detailInfoButtonBox {
-    width: 100%;
-    height: 4rem;
-    margin: auto;
-    border: 1px solid black;
-    
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-    color: black;
+    width: 40% !important;
     font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.detailInfoButtonBox:hover, .clicked {
-    width: 100%;
-    height: 4rem;
-    margin: auto;
-    border: 1px solid black;
-    
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-    background-color: black;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
+    font-weight: bolder;
+    padding-right: 5%;
 }
 
 .detailInfoRight {
-    width: 65% !important;
-    height: 100%;
-    border: 1px solid black;  
-    border-radius: 5px;
-
-    display:flex !important;
-    justify-content: center;
-    align-items: center;
-
+    width: 60% !important;
     font-size: 1.2rem;
-    font-weight: bold;
+    display: flex !important;
+    justify-content: left;
+    text-align: left !important;
+    
+}
+
+.contactInfo{
+    display: flex !important;
+}
+
+.contactDetail{
+    width: 50%;
+    margin: 0 auto !important;
+}
+
+.joinedPlayerInfo{
+    display: block !important;
+}
+
+.joinedPlayerDetail{
+    width: 100%;
+    margin: 0 auto 3% auto !important;
 }

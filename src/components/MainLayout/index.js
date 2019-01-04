@@ -1,4 +1,5 @@
 import React from "react";
+import {Container} from "semantic-ui-react";
 
 import Header from "../Header";
 import Footer from "../Footer";
@@ -9,14 +10,14 @@ import SportCardSection from "../SportSection";
 class MainLayout extends React.Component {
 	render() {
 		return (
-			<div>
+			<Container fluid>
 				<Header />
 				
 				<MainImageRolling />
 				<SportCardSection />
 
 				<Footer />
-			</div>
+			</Container>
 		);
 	}
 }

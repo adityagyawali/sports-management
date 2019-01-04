@@ -15,12 +15,12 @@ class ImageRolling extends Component {
 		num: 0
 	};
 
-	componentDidMount() {
-		this.image = setInterval(() => this.changeImage(), 3000);
-	}
-
 	componentWillUnmount() {
 		clearInterval(this.image);
+	}
+	
+	componentDidMount() {
+		this.image = setInterval(() => this.changeImage(), 3000);
 	}
 
 	changeImage = () => {
@@ -37,9 +37,8 @@ class ImageRolling extends Component {
 
 	render() {
 		return (
-			<Container
-				className="mainImageBox"
-				fluid
+			<Container fluid
+				className="mainImageBox" 
 				style={{ backgroundImage: "url(" + this.state.src + ")" }}
 			>
 				<Container className="mainInfoBox" fluid>
