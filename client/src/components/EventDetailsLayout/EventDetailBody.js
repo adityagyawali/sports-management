@@ -1,72 +1,71 @@
 import React from 'react';
-import {Container, Header, Icon} from 'semantic-ui-react';
+import {Container, Icon, Header} from 'semantic-ui-react';
 
 import './EventDetailBody.css';
+import JoinedPlayers from './JoinedPlayers';
+
 
 class EventDetailBody extends React.Component {
-
-    state ={
-        content: this.props.event.description,
-        isClicked: false
-    }
-
-    onClick=(e)=> {
-        const { mobile, email, description} = this.props.event;
-
-        //remove background black
-        let detailInfoButtons = document.querySelectorAll(".detailInfoButtonBox");
-        for(let i=0; i<detailInfoButtons.length; i++){
-            detailInfoButtons[i].classList.remove("clicked");
-        }
-
-        let contentTitle = e.target.innerText;
-        let contentItem = "";
-
-        if (contentTitle === "More Information"){
-            contentItem = description;
-        }
-        if (contentTitle === "More Information2"){
-            contentItem = this.props.moreInfo
-        }
-        if (contentTitle === "Today Members"){
-            contentItem = this.props.member
-        }
-        if (contentTitle === "Contact"){
-            contentItem = "Email : " + email + "Mobile: "+ mobile
-        }
-        
-        this.setState({
-            content: contentItem,
-            isClicked: true
-        })
-
-        e.target.classList.add("clicked");
-    }
     
     render(){
-        const { description } = this.props.event;
-        return (
-            <Container className="detailInfoBoxOuter">
-                <Header as="h1">
-                    <Icon name="comment alternate outline" />
-                    <Header.Content>
-                        Description
-                    </Header.Content>
-                </Header>
-                <Container className="detailInfoBox">
-                    <Container className="detailInfo detailInfoLeft">                        
-                        <div className="detailInfoButtonBox clicked" onClick={this.onClick}>More Information</div>
-                        <div className="detailInfoButtonBox" onClick={this.onClick}>More Information2</div>
-                        <div className="detailInfoButtonBox" onClick={this.onClick}>Today Members</div>
-                        <div className="detailInfoButtonBox" onClick={this.onClick}>Contact</div>
-                    </Container>
-                    
-                    <Container className="detailInfo detailInfoRight">
-                        {this.state.isClicked ? this.state.content : description }
-                    </Container>
+        
+        const joinedPlayers = this.props.joinedPlayerList;
+        let joinedPlayerList;
+        if (joinedPlayers.length < 1){
+            joinedPlayerList = <h3>Be the first challenger !</h3>
+        }else{
+            joinedPlayerList = joinedPlayers.map( (player, index) => {
+                return <JoinedPlayers key={"player_"+index} player={player} />
+            });
+        }
 
+
+        const { description, mobile, email } = this.props.event;
+        return (
+
+            <Container className="detailBox">
+                
+                <Container className="detailInfoBox">
+                    <Container className="detailInfo detailInfoLeft">
+                        ABOUT
+                    </Container>
+                    <Container className="detailInfo detailInfoRight">
+                        {description}
+                    </Container>
                 </Container>
 
+                <Container className="detailInfoBox">
+                    <Container className="detailInfo detailInfoLeft">
+                        CONTACT
+                    </Container>
+                    <Container className="detailInfo detailInfoRight contactInfo">
+                        
+                        <Header as='h4' image className="contactDetail">    
+                            <Icon name="at" /> 
+                            <Header.Content>
+                                {email}
+                                <Header.Subheader>Email </Header.Subheader>
+                            </Header.Content>
+                        </Header>    
+
+                        <Header as='h4' image className="contactDetail">    
+                            <Icon name="mobile" /> 
+                            <Header.Content>
+                                +358 {mobile}
+                                <Header.Subheader>Mobile </Header.Subheader>
+                            </Header.Content>
+                        </Header>                        
+                    </Container>
+                </Container>
+            
+                <Container className="detailInfoBox">
+                    <Container className="detailInfo detailInfoLeft">
+                        JOINED PLAYERS
+                    </Container>
+                    <Container className="detailInfo detailInfoRight joinedPlayerInfo">
+                        {joinedPlayerList}
+                    </Container>
+                </Container>
             </Container>
         );
     }

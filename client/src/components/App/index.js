@@ -20,7 +20,7 @@ class App extends Component {
 				<Switch>
 					<Route path="/app" component={MainLayout} />
 					<Route exact path="/eventList" component={EventListLayout} />
-					<Route exact path="/eventDetails" component={EventDetailsLayout} />
+					<Route path="/eventDetails" component={EventDetailsLayout} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={SignUp} />
 					<Route exact path="/needPlayers" component={NeedPlayerLayout} />

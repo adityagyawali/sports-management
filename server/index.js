@@ -12,19 +12,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //routes use
 const user = require("./routes/api/user");
+const api = require("./routes/api/api");
 
+app.use("/api", api);
 app.use("/api/user", user);
 
 //database connection
 mongoose.connect(
-	`
-mongodb://aditya:abcd1234@ds159121.mlab.com:59121/sports-finder
-`,
+	`mongodb://aditya:abcd1234@ds159121.mlab.com:59121/sports-finder`,
 	{ useNewUrlParser: true },
 	() => {
 		console.log("connected to database");
 	}
 );
+
+
+
+
 
 //server port
 const port = 5000;

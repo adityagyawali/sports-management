@@ -22,58 +22,55 @@ class Header extends Component {
 		return (
 			<Segment inverted>
 				<Menu inverted secondary>
-					<Link to="/app">
-						<Menu.Item
-							name="Home"
-							active={activeItem === "Home"}
-							onClick={this.handleItemClick}
-						/>
-					</Link>
+					<Menu.Item
+						name="Home"
+						active={activeItem === "Home"}
+						onClick={this.handleItemClick}
+						href="/app"
+					/>
 
-					<Link to="/needPlayers">
-						{" "}
-						<Menu.Item
-							name="Need Players"
-							active={activeItem === "Need Players"}
-							onClick={this.handleItemClick}
-						/>{" "}
-					</Link>
+					<Menu.Item
+						name="Need Players"
+						active={activeItem === "Need Players"}
+						onClick={this.handleItemClick}
+						href="/needPlayers"
+					/>
 
-					<Link to="/eventList">
-						<Menu.Item
-							name="Find Events"
-							active={activeItem === "Find Events"}
-							onClick={this.handleItemClick}
-						/>
-					</Link>
+					<Menu.Item
+						name="Find Events"
+						active={activeItem === "Find Events"}
+						onClick={this.handleItemClick}
+						href="/eventList"
+					/>
 
-					{this.props.auth.isAuthenticated ? (
-						<Menu.Menu position="right">
-							<Menu.Item>
-								<Button primary>
-									{this.props.auth.user.name.split(" ")[0]}
-								</Button>
-							</Menu.Item>
-							<Menu.Item>
-								<Button primary onClick={this.logout}>
-									Logout
-								</Button>
-							</Menu.Item>
-						</Menu.Menu>
-					) : (
-						<Menu.Menu position="right">
-							{/* <Menu.Item>
+
+				{this.props.auth.isAuthenticated ? (
+					<Menu.Menu position="right">
+						<Menu.Item>
 							<Button primary>
-								<Link to="/register">Sign Up</Link>
+								{this.props.auth.user.name.split(" ")[0]}
 							</Button>
-						</Menu.Item> */}
-							<Menu.Item>
-								<Button primary>
-									<Link to="/login">Log In</Link>
-								</Button>
-							</Menu.Item>
-						</Menu.Menu>
-					)}
+						</Menu.Item>
+						<Menu.Item>
+							<Button primary onClick={this.logout}>
+								Logout
+							</Button>
+						</Menu.Item>
+					</Menu.Menu>
+				) : (
+					<Menu.Menu position="right">
+						{/* <Menu.Item>
+						<Button primary>
+							<Link to="/register">Sign Up</Link>
+						</Button>
+					</Menu.Item> */}
+						<Menu.Item>
+							<Button primary>
+								<Link to="/login">Log In</Link>
+							</Button>
+						</Menu.Item>
+					</Menu.Menu>
+				)}
 				</Menu>
 			</Segment>
 		);
