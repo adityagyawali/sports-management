@@ -11,7 +11,7 @@ class JoinedPlayers extends React.Component{
                 <Image src={Mark} rounded size='small' />
                 <Header.Content>
                     {userId}
-                    <Header.Subheader>Comment: {comment}</Header.Subheader>
+                    <Header.Subheader>Message: {comment}</Header.Subheader>
                 </Header.Content>
             </Header>
         );

@@ -4,6 +4,7 @@ import needPlayerReducer from "./needPlayerReducer";
 import eventListReducer from "./eventListReducer";
 import eventDetailReducer from "./eventDetailReducer";
 import joinEventReducer from './joinEventReducer';
+import modifyEventReducer from './modifyEventReducer';
 import authReducer from "./authReducer";
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
 	eventList: eventListReducer,
 	eventDetail: eventDetailReducer,
 	joinEvent : joinEventReducer,
+	modifyEvent: modifyEventReducer,
 	auth: authReducer
 });

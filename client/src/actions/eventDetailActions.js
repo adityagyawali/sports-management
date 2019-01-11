@@ -34,6 +34,7 @@ const getJoinedPlayerFailed = (error) => {
     }
 }
 
+
 const loading = () => {
 	return {
 		type: LOADING
