@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Icon, Header} from 'semantic-ui-react';
+import {Container, Icon, Header, Button} from 'semantic-ui-react';
 
 import './EventDetailBody.css';
 import JoinedPlayers from './JoinedPlayers';
@@ -7,6 +7,10 @@ import JoinedPlayers from './JoinedPlayers';
 
 class EventDetailBody extends React.Component {
     
+    onClickModify = ()=> {
+        this.props.onModify();
+    }
+
     render(){
         
         const joinedPlayers = this.props.joinedPlayerList;
@@ -65,6 +69,10 @@ class EventDetailBody extends React.Component {
                     <Container className="detailInfo detailInfoRight joinedPlayerInfo">
                         {joinedPlayerList}
                     </Container>
+                </Container>
+                
+                <Container className="modifiyButtonBox">
+                    <Button color="red" size="big" onClick={this.onClickModify}><Icon name="cog"/>Modify</Button>
                 </Container>
             </Container>
         );

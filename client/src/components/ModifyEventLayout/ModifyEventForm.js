@@ -1,35 +1,31 @@
-import React from "react";
-import {Form,Container, Dropdown, Divider, Input, Button} from "semantic-ui-react";
-
+import React from 'react';
+import {Form,Container, Dropdown, Divider, Input, Button} from 'semantic-ui-react';
 import Calendar from 'react-calendar'
-import {withRouter} from 'react-router-dom'
-import "./NeedPlayers.css";
+import "../NeedPlayerLayout/NeedPlayers.css";
 
-import {addToNeedPlayerList} from '../../actions/needPlayersActions';
-import {connect} from 'react-redux';
 
-class NeedPlayers extends React.Component {
 
-	state = {
-		category: "",
-		title:"",
-		date: new Date(), 
-		region: "",
-		address: "",
-		amPm: "",
-		hour:"",
-		minute: "",
-		players: "",
-		joinedPlayers: 0,
-		duration:"", 
-		cost: "",
-		mobile: "",
-		email: "",
-		description:""
-
-	}
-
-	handleChange = (e, { value, name }) => this.setState({ [name] : value })
+class ModifyEventForm extends React.Component {
+    
+    state = {
+        category: this.props.eventInfo.category,
+        title: this.props.eventInfo.title,
+        date: new Date(this.props.eventInfo.date), 
+        region: this.props.eventInfo.region,
+        address: this.props.eventInfo.address,
+        amPm: this.props.eventInfo.amPm,
+        hour:this.props.eventInfo.hour,
+        minute: this.props.eventInfo.minute,
+        players: this.props.eventInfo.players,
+        joinedPlayers: this.props.eventInfo.joinedPlayers,
+        duration: this.props.eventInfo.duration,
+        cost: this.props.eventInfo.cost,
+        mobile: this.props.eventInfo.mobile,
+        email: this.props.eventInfo.email,
+        description: this.props.eventInfo.description
+    }
+    
+    handleChange = (e, { value, name }) => this.setState({ [name] : value })
 	handleSearchChange = (e, { name, searchQuery }) => this.setState({ [name] : searchQuery })
 	handleInput = (e) => {
 		if(e.target.name === "minute" && e.target.value < 10){
@@ -43,15 +39,14 @@ class NeedPlayers extends React.Component {
 	}
 
 	handleSubmit = (e) => {
-		e.preventDefault();
-		this.props.dispatch(addToNeedPlayerList(this.state, () => { 
-			this.props.history.push('/eventList'); 
-		}));
+        e.preventDefault();
+		this.props.onSubmit(this.state)
 	}
 
 
 	render (){
-		const {categoryOptions,regionOptions } = this.props;
+        const {categoryOptions,regionOptions } = this.props;
+
 		return (
 			<Container fluid className="findGuest">
 				<Container className="header">
@@ -59,7 +54,7 @@ class NeedPlayers extends React.Component {
 					<h3>Please specify the Sport and players you need</h3>
 				</Container>
 				<Divider />
-				<Container className="findGuestForm">
+                <Container className="findGuestForm">
 					<Form onSubmit={this.handleSubmit}>
 						<Form.Field inline>
 							<label htmlFor="category">Category: </label>
@@ -80,7 +75,8 @@ class NeedPlayers extends React.Component {
 							<label htmlFor="title">Title : </label>
 							<Input name="title" placeholder='Describe the event shortly ...'
 									type="text" onChange={this.handleInput} 
-									className="title_input"
+                                    className="title_input"
+                                    value={this.state.title}
 							 />
 						</Form.Field>						
 						
@@ -114,7 +110,8 @@ class NeedPlayers extends React.Component {
 							<label htmlFor="address">Address: </label>
 							<Input name="address" placeholder='Describe the address ...'
 									type="text" onChange={this.handleInput} 
-									className="title_input"
+                                    className="title_input"
+                                    value={this.state.address}
 							 />
 						</Form.Field> 						
 						
@@ -124,10 +121,13 @@ class NeedPlayers extends React.Component {
 								<Button.Group>
 									<Button attached="left" >
 										<label className="smallLabel">
+											
+											
 											<input name="amPm"
 												type="radio"  
-												onClick={this.handleInput}												
+												onChange={this.handleInput}												
 												value="AM"
+												checked={ this.state.amPm === "AM" ? true : false }
 											/>
 											<span>AM</span>
 										</label>
@@ -136,8 +136,9 @@ class NeedPlayers extends React.Component {
 										<label className="smallLabel">
 											<input name="amPm"
 													type="radio"  
-													onClick={this.handleInput}
+													onChange={this.handleInput}
 													value="PM"
+													checked={ this.state.amPm === "PM" ? true : false }
 												/>
 											<span>PM</span>
 										</label>
@@ -145,10 +146,10 @@ class NeedPlayers extends React.Component {
 								</Button.Group>
 								<Input name="hour"  label='Hour' placeholder='9' 
 									type="number" onChange={this.handleInput}
-									className="time_input" min="1" max="12"/>
+									className="time_input" min="1" max="12" value={this.state.hour}/>
 								<Input name="minute"  label='Minutes' placeholder='30' 
 									type="number" onChange={this.handleInput} 
-									className="time_input" min="00" max="59"/>
+									className="time_input" min="00" max="59" value={this.state.minute}/>
 							</span>
 						</Form.Field> 
 
@@ -159,7 +160,8 @@ class NeedPlayers extends React.Component {
 							<Input name="players" placeholder='Describe the players ...'
 									type="number" onChange={this.handleInput} 
 									className="title_input"
-									min="1" max="15"
+                                    min="1" max="15"
+                                    value={this.state.players}
 							/>
 						</Form.Field> 
 						
@@ -169,7 +171,7 @@ class NeedPlayers extends React.Component {
 									type="number" onChange={this.handleInput} 
 									className="title_input"
 									min="1" max="5"
-									 
+                                    value={this.state.duration}
 							/>
 						</Form.Field> 
 						
@@ -181,7 +183,7 @@ class NeedPlayers extends React.Component {
 									type="number" onChange={this.handleInput} 
 									className="title_input"
 									min="0" max="30"
-									 
+									value={this.state.cost} 
 							/>
 						</Form.Field> 
 						<br/>
@@ -195,19 +197,22 @@ class NeedPlayers extends React.Component {
 
 								<Input name="mobile" label='Mobile' placeholder='0466298287'
 									className="contactInput"
-									type="text" onChange={this.handleInput}									
-									 />
+                                    type="text" onChange={this.handleInput}
+                                    value={this.state.mobile} 									
+								/>
 							
 								<Input name="email" label='Email' placeholder='myEmail@mail.com' 
 									className="contactInput"
-									type="email" onChange={this.handleInput} />
+									type="email" onChange={this.handleInput} 
+                                    value={this.state.email}
+                                />
 							</span>
 						</Form.Field>
 
 						<Form.Field inline>
 							<label htmlFor="description">Description: </label>
 							<textarea name="description" className="findGuestForm_input description_input"
-								onChange={this.handleInput}
+								onChange={this.handleInput} value={this.state.description}
 							></textarea>	
 						</Form.Field> 
 						
@@ -223,7 +228,7 @@ class NeedPlayers extends React.Component {
 	}
 }
 
-NeedPlayers.defaultProps = {
+ModifyEventForm.defaultProps = {
 	categoryOptions : [
 		{ key: 1, text: 'ALL', value: 'ALL' },
 		{ key: 2, text: 'BASKET BALL', value: 'BASKET BALL' },
@@ -239,5 +244,4 @@ NeedPlayers.defaultProps = {
 	]
 }
 
-
-export default withRouter(connect()(NeedPlayers));
+export default ModifyEventForm;

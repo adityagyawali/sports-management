@@ -26,21 +26,26 @@ class Header extends Component {
 						name="Home"
 						active={activeItem === "Home"}
 						onClick={this.handleItemClick}
-						href="/app"
+						as={Link} 
+						to='/app'
 					/>
+
+
 
 					<Menu.Item
 						name="Need Players"
 						active={activeItem === "Need Players"}
 						onClick={this.handleItemClick}
-						href="/needPlayers"
+						as={Link} 
+						to="/needPlayers"
 					/>
 
 					<Menu.Item
 						name="Find Events"
 						active={activeItem === "Find Events"}
 						onClick={this.handleItemClick}
-						href="/eventList"
+						as={Link} 
+						to="/eventList"
 					/>
 
 

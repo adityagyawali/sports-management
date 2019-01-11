@@ -39,7 +39,7 @@ router.post("/addToNeedPlayersList", function(req,res){
 
 router.get("/getEventList", function(req, res){
     console.log('api/getEventList request arrived')
-    needPlayerModel.find(function(err, items){
+    needPlayerModel.find( function(err, items){
         if(err){
             return res.status(404).json({"message": "eventList not found"})
         }
@@ -47,7 +47,7 @@ router.get("/getEventList", function(req, res){
             return res.status(404).json({"message":"eventList not found"})
         }
         return res.status(200).json(items);
-    });
+    }).sort({ "date": 1 } );
 })
 
 
@@ -106,5 +106,41 @@ router.post("/getJoinedPlayers/:id", function (req, res){
         return res.status(200).json(item);
     }) 
 })
+
+router.post("/getModifyDetail/:id", function(req,res){
+    console.log("modify Event request")
+    const eventId = req.params.id;
+    needPlayerModel.findOne({"_id": eventId}, function(err, item){
+        if(err){
+            return res.status(404).json({"message": "eventDetail not found"})
+        }
+        if(!item){
+            return res.status(404).json({"message": "eventDetail not found"})
+        }
+        return res.status(200).json(item);
+    })  
+})
+
+router.post("/saveModifiedEvent/:id", function(req,res){
+    console.log("saving modified Event request")
+    const eventId = req.params.id;
+
+    needPlayerModel.updateOne({"_id": eventId},//query 
+        {$set: req.body },//set changes
+        function(err, item){
+            if(err){
+                res.status(400).json({"message": "saving modifeidEvent Failed"})
+            }
+            if(!item){
+                res.status(400).json({"message": "saving modifeidEvent Failed"})
+            }
+            
+            return res.status(200).json({"message":"saving modfiedEvent Success"})
+        }
+    )
+})
+
+
+
 
 module.exports = router;

@@ -13,15 +13,20 @@ import {getEventDetail, getJoinedPlayers} from '../../actions/eventDetailActions
 
 class EventDetailsLayout extends React.Component{
     componentDidMount(){
-        let id = window.location.href.split("/").slice(-1)[0]
+        const id = window.location.href.split("/").slice(-1)[0]
         this.props.dispatch(getEventDetail(id));
         this.props.dispatch(getJoinedPlayers(id));
     }
 
     handleJoinSubmit = () => {
-        let id = window.location.href.split("/").slice(-1)[0]
+        const id = window.location.href.split("/").slice(-1)[0]
         this.props.dispatch(getEventDetail(id));
         this.props.dispatch(getJoinedPlayers(id));
+    }
+
+    handleModifySubmit = () => {
+        const id = window.location.href.split("/").slice(-1)[0]
+        this.props.history.push("/modifyEvent/"+id);
     }
 
     render(){
@@ -42,7 +47,7 @@ class EventDetailsLayout extends React.Component{
                 <hr />
                 <EventJoin eventId={this.props.list._id} userId={"defaultUserId"} onSubmit={this.handleJoinSubmit} joinedPlayerNum={joinedNum} players={players}/>
                 <hr />
-                <EventDetailBody event={this.props.list} joinedPlayerList={this.props.joinedPlayerList}/>
+                <EventDetailBody event={this.props.list} joinedPlayerList={this.props.joinedPlayerList} onModify={this.handleModifySubmit}/>
             </Container>)
         }
 
@@ -50,6 +55,7 @@ class EventDetailsLayout extends React.Component{
 			<Container fluid >
 				<Header />
                     {eventDetail}
+                    
 				<Footer />
             </Container>
         );

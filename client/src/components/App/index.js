@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {
-	BrowserRouter as Router,
+import { HashRouter,
+	//BrowserRouter as Router,
 	Route,
 	Switch,
 	Redirect
@@ -12,11 +12,12 @@ import EventDetailsLayout from "../EventDetailsLayout";
 import Login from "../Authentication/Login";
 import SignUp from "../Authentication/SignUp";
 import NeedPlayerLayout from "../NeedPlayerLayout";
+import ModifyEvent from "../ModifyEventLayout";
 
 class App extends Component {
 	render() {
 		return (
-			<Router>
+			<HashRouter>
 				<Switch>
 					<Route path="/app" component={MainLayout} />
 					<Route exact path="/eventList" component={EventListLayout} />
@@ -24,11 +25,12 @@ class App extends Component {
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/register" component={SignUp} />
 					<Route exact path="/needPlayers" component={NeedPlayerLayout} />
+					<Route path="/modifyEvent" component={ModifyEvent} />
 
 					<Redirect from="/" to="/app" exact />
 					<Route render={() => <h1>404</h1>} />
 				</Switch>
-			</Router>
+			</HashRouter>
 		);
 	}
 }
