@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Loader} from 'semantic-ui-react';
-import { connect } from 'react-redux';
 
 import Header from "../Header";
 import Footer from "../Footer";
@@ -9,6 +8,7 @@ import SearchBar from './SearchBar';
 import EventList from './EventList';
 
 import {getEventList} from '../../actions/eventListActions';
+import { connect } from 'react-redux';
 
 class EventLayout extends React.Component {
     state = {

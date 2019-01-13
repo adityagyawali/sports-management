@@ -50,11 +50,11 @@ class EventDetailHead extends React.Component{
         const day = newDate[0];
         newDate.shift();
 
-        return newDate.join("/") + "   (" + day + ")"
+        return newDate.join("/") + " (" + day + ")"
     }
 
     render(){
-        const { title, category, date, players, amPm, hour, address, region, cost} = this.props.event;
+        const { title, category, date, players, amPm, hour, address, region, cost, duration} = this.props.event;
         let {minute} = this.props.event; 
         if (minute < 10) minute = "0" + minute;
         const dateFormat = this.handleDateFormat(date);
@@ -78,7 +78,7 @@ class EventDetailHead extends React.Component{
                         <br />
                         <Icon name="map marker alternate"/>
                         <Header.Content>
-                            {amPm} {hour}:{minute}<br/>
+                            {amPm} {hour}:{minute} / ({duration} hour)<br/>
                             {address}, {region}
                         </Header.Content>
                     </Header> 

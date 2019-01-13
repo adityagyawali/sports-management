@@ -12,14 +12,13 @@ class EventDetailBody extends React.Component {
     }
 
     render(){
-        
         const joinedPlayers = this.props.joinedPlayerList;
         let joinedPlayerList;
         if (joinedPlayers.length < 1){
             joinedPlayerList = <h3>Be the first challenger !</h3>
         }else{
             joinedPlayerList = joinedPlayers.map( (player, index) => {
-                return <JoinedPlayers key={"player_"+index} player={player} />
+                return <JoinedPlayers key={"player_"+ index} player={player} />
             });
         }
 

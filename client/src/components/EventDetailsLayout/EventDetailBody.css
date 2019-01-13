@@ -27,7 +27,7 @@
     display: flex !important;
     justify-content: left;
     text-align: left !important;
-    
+    font-weight: 500;
 }
 
 .contactInfo{
