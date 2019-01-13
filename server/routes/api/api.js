@@ -132,7 +132,7 @@ router.post("/saveModifiedEvent/:id", function(req,res){
                 res.status(400).json({"message": "saving modifeidEvent Failed"})
             }
             if(!item){
-                res.status(400).json({"message": "saving modifeidEvent Failed"})
+                res.status(400).json({"message": "cannot find item with id"})
             }
             
             return res.status(200).json({"message":"saving modfiedEvent Success"})
@@ -140,6 +140,29 @@ router.post("/saveModifiedEvent/:id", function(req,res){
     )
 })
 
+
+router.post("/modifyMessage", function(req, res){
+    console.log("saving modified Message request")
+    const id = req.body.id
+    const comment = req.body.comment
+    console.log("id:"+ id + "//// comment" + comment)
+
+    joinEventModel.updateOne( {"_id": id }, 
+        {$set: {"comment": comment}},
+        function (err, item){
+            if(err){
+                res.status(400).json({"message": "saving modified message Failed"})
+            }
+            if(!item){
+                res.status(400).json({"message": "cannot find item with id"})
+            }
+            
+            res.status(200).json({"message":"modifying message saved !"})
+        }        
+
+    )
+
+})
 
 
 

@@ -3,32 +3,33 @@ import {Header, Image, Button, Form, Input} from 'semantic-ui-react';
 import Mark from '../../assets/mark.png';
 import "./JoinedPlayers.css"
 
+import {modifyMessageOfJoinedPlayer} from '../../actions/joinEventActions';
+
+import {connect} from 'react-redux';
+
 class JoinedPlayers extends React.Component{
     
     state = {
         joinedPlayerId: this.props.player._id,
-        eventId : this.props.player.eventId,
-        userId: this.props.player.userId,
         comment: this.props.player.comment,
+        userId: this.props.player.userId,
         isModifyMode: false,
     }
 
     handleModify = () => {
-        console.log(this.props.player);
         this.setState({ isModifyMode: true})
     }
 
-    handleSubmit = () => {
-        console.log(this.state)
-        this.setState({ isModifyMode: false})
-        
-        //여기서 데이타 베이스로 보내고, 다시 로드 하면 됨.....
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const item = {
+            id: this.state.joinedPlayerId,
+            comment: this.state.comment, 
+        }
 
-
-
-
-
-
+        this.props.dispatch(modifyMessageOfJoinedPlayer( item, 
+            () => this.setState({ isModifyMode: false}) 
+        )) // when database response 200
     }
 
     onChange = (e) => {
@@ -69,63 +70,4 @@ class JoinedPlayers extends React.Component{
     }
 }
 
-export default JoinedPlayers;
-
-
-
-/*
-        let joinedPlayer;
-        if (this.state.isModifyMode === true){
-            joinedPlayer= (
-                <Container>Strange</Container>
-            )
-        }else{
-            joinedPlayer = (
-                <Header as='h4' image className="joinedPlayerDetail">
-                    <Image src={Mark} rounded size='small' />
-                    <Header.Content>
-                        {this.state.userId}
-                        <Header.Subheader>
-                            Message: {this.state.comment} <Button onClick={this.handleModify}className="messageModifyButton" size="small" color="red" >Modify</Button>
-                        </Header.Subheader>
-                    </Header.Content>
-                </Header>
-            )
-        }
-
-        return (
-            {joinedPlayer}
-        );
-
-
-
-
-
-
-
-
-        <Header as='h4' image className="joinedPlayerDetail">    
-            <Image src={Mark} rounded size='small' />
-            <Header.Content>
-                Mark (UserName)
-                <Header.Subheader>Comment: </Header.Subheader>
-            </Header.Content>
-        </Header>
-
-        <Header as='h4' image className="joinedPlayerDetail">     
-            <Image src={Mark} rounded size='small' />
-            <Header.Content>
-                Mark (UserName)
-                <Header.Subheader>Comment: Lets have fun !</Header.Subheader>
-            </Header.Content>
-        </Header>
-
-        <Header as='h4' image className="joinedPlayerDetail"> 
-            <Image src={Mark} rounded size='small' />
-            <Header.Content>
-                Mark
-                <Header.Subheader>Comment: I will be little late but I am surely coming !</Header.Subheader>
-            </Header.Content>
-        </Header>
-
-        */
+export default connect()(JoinedPlayers);
