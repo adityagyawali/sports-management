@@ -10,6 +10,7 @@ class EventJoin extends React.Component {
     state = {
         comment:"",
         userId: this.props.userId,
+        userName: this.props.userName,
         eventId: this.props.eventId
     }
 
@@ -17,6 +18,7 @@ class EventJoin extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+        console.log(this.state)
     }
 
     onSubmit = (e) => {

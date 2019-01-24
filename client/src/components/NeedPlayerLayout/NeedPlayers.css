@@ -21,6 +21,11 @@
     font-weight: bold;
 }
 
+.findGuest .findGuestForm_calendar {
+    display: inline-block;
+    width: 35rem !important;
+}
+
 .findGuest .title_input {
     width: 35rem !important;
     font-weight: bold; 

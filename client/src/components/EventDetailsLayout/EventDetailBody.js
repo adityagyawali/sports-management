@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Icon, Header} from 'semantic-ui-react';
+import {Container, Icon, Header, Button} from 'semantic-ui-react';
 
 import './EventDetailBody.css';
 import JoinedPlayers from './JoinedPlayers';
@@ -7,20 +7,24 @@ import JoinedPlayers from './JoinedPlayers';
 
 class EventDetailBody extends React.Component {
     
+    onClickModify = ()=> {
+        this.props.onModify();
+    }
+
     render(){
-        
         const joinedPlayers = this.props.joinedPlayerList;
         let joinedPlayerList;
         if (joinedPlayers.length < 1){
             joinedPlayerList = <h3>Be the first challenger !</h3>
         }else{
             joinedPlayerList = joinedPlayers.map( (player, index) => {
-                return <JoinedPlayers key={"player_"+index} player={player} />
+                return <JoinedPlayers key={"player_"+ index} player={player} loggedUserId={this.props.loggedUserId} />
             });
         }
 
-
         const { description, mobile, email } = this.props.event;
+        const userId = this.props.event.userId;
+
         return (
 
             <Container className="detailBox">
@@ -66,6 +70,12 @@ class EventDetailBody extends React.Component {
                         {joinedPlayerList}
                     </Container>
                 </Container>
+                
+                {userId === this.props.loggedUserId ?
+                    (<Container className="modifiyButtonBox">
+                        <Button color="red" size="big" onClick={this.onClickModify}><Icon name="cog"/>Modify</Button>
+                    </Container>) : ""
+                }
             </Container>
         );
     }

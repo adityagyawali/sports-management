@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Loader} from 'semantic-ui-react';
-import { connect } from 'react-redux';
 
 import Header from "../Header";
 import Footer from "../Footer";
@@ -9,6 +8,9 @@ import SearchBar from './SearchBar';
 import EventList from './EventList';
 
 import {getEventList} from '../../actions/eventListActions';
+import { getSportsCategory, getRegionCategory } from "../../actions/needPlayersActions";
+import { connect } from 'react-redux';
+
 
 class EventLayout extends React.Component {
     state = {
@@ -18,6 +20,8 @@ class EventLayout extends React.Component {
 
 	componentDidMount() {
         this.props.dispatch(getEventList());
+        this.props.dispatch(getSportsCategory());
+        this.props.dispatch(getRegionCategory());
     }
 
     handleOnChange = ( filteringInfo )=>{
@@ -51,14 +55,14 @@ class EventLayout extends React.Component {
     
     render() {
         let eventList;
-        if (this.props.loading){
+        if (this.props.loading || this.props.sportsCategoryLoading){
             eventList = ( 
                 <Loader active inline='centered' />
             )
         }else {
             eventList = ( 
-                <EventList eventList={(this.state.isFiltered ? this.state.list : this.props.list)} /> 
-            )  
+                <EventList eventList={(this.state.isFiltered ? this.state.list : this.props.list)} sportCategoryList={this.props.sportCategoryList} /> 
+            )
         }
 
     	return (
@@ -66,7 +70,7 @@ class EventLayout extends React.Component {
 				<Header />
 
                 <EventImage />
-                <SearchBar onChange={this.handleOnChange} />
+                <SearchBar onChange={this.handleOnChange} sportCategoryList={this.props.sportCategoryList} regionCategoryList={this.props.regionCategoryList}/>
                 {eventList}
                 
 				<Footer />
@@ -77,7 +81,10 @@ class EventLayout extends React.Component {
 
 const mapStateToProps = (state) => ({
     list: state.eventList.list,
-    loading: state.eventList.loading
+    loading: state.eventList.loading,
+    sportsCategoryLoading: state.needPlayerList.loading,
+    sportCategoryList: state.needPlayerList.sportCategoryList,
+    regionCategoryList: state.needPlayerList.regionCategoryList,
 })
 
 export default connect(mapStateToProps)(EventLayout);

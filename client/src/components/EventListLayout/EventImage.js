@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Container, Button} from 'semantic-ui-react';
 import './EventImage.css';
 
-import eventBasketball from '../../assets/eventBasketball.jpg';
-import eventFloorball from '../../assets/eventFloorball.jpg';
-import eventFootball from '../../assets/eventFootball.jpg';
-import eventRun from '../../assets/eventRun.jpg';
-import eventSnowboard from '../../assets/eventSnowboard.jpg';
+import eventBasketball from '../../assets/basketball.jpg';
+import eventFloorball from '../../assets/floorball.jpg';
+import eventFootball from '../../assets/football.jpg';
+import eventRun from '../../assets/run.jpg';
+import eventSnowboard from '../../assets/snowboard.jpg';
 
 /*
 Photo by Tim Mossholder from Pexels ( basektball )
@@ -37,7 +38,7 @@ class EventImage extends React.Component {
                 <Container className="eventInfoBox">
                     <h1 className="eventTitle"> {title} </h1>
                     <p className="eventDescription">{description}</p>
-                    <Button color='blue'><a href="/signUp">Sign me up!</a></Button>
+                    <Link to="/login"><Button color='blue'>Sign me up!</Button></Link>
                 </Container>
             </Container>
         );

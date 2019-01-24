@@ -1,4 +1,6 @@
-import {LOADING, GET_EVENT_DETAIL_SUCCESS, GET_EVENT_DETAIL_FAILED, GET_JOINED_PLAYER_SUCCESS, GET_JOINED_PLAYER_FAILED} from '../actions/eventDetailActions';
+import {LOADING, 
+    GET_EVENT_DETAIL_SUCCESS, GET_EVENT_DETAIL_FAILED, 
+    GET_JOINED_PLAYER_SUCCESS, GET_JOINED_PLAYER_FAILED} from '../actions/eventDetailActions';
 
 const initialState = {
     list: {},

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+//models 
 const needPlayerModel = require("../../models/needPlayerModel");
 const joinEventModel = require("../../models/joinEventModel");
 
@@ -23,6 +24,7 @@ router.post("/addToNeedPlayersList", function(req,res){
         mobile: req.body.mobile,
         email: req.body.email,
         description: req.body.description,
+        userId: req.body.userId,
         registeredDate: new Date(),
         modifiedDate: new Date()
     });
@@ -37,18 +39,7 @@ router.post("/addToNeedPlayersList", function(req,res){
 });
 
 
-router.get("/getEventList", function(req, res){
-    console.log('api/getEventList request arrived')
-    needPlayerModel.find(function(err, items){
-        if(err){
-            return res.status(404).json({"message": "eventList not found"})
-        }
-        if(!items){
-            return res.status(404).json({"message":"eventList not found"})
-        }
-        return res.status(200).json(items);
-    });
-})
+
 
 
 router.get("/getEventDetail/:id", function(req, res){
@@ -70,6 +61,7 @@ router.post("/joinEvent", function (req, res){
     const joinEventItem = new joinEventModel({
         eventId : req.body.eventId,
         userId : req.body.userId,
+        userName: req.body.userName,
         comment : req.body.comment
     })
     
@@ -106,5 +98,67 @@ router.post("/getJoinedPlayers/:id", function (req, res){
         return res.status(200).json(item);
     }) 
 })
+
+router.post("/getModifyDetail/:id", function(req,res){
+    console.log("modify Event request")
+    const eventId = req.params.id;
+    needPlayerModel.findOne({"_id": eventId}, function(err, item){
+        if(err){
+            return res.status(404).json({"message": "eventDetail not found"})
+        }
+        if(!item){
+            return res.status(404).json({"message": "eventDetail not found"})
+        }
+        return res.status(200).json(item);
+    })  
+})
+
+router.post("/saveModifiedEvent/:id", function(req,res){
+    console.log("saving modified Event request")
+    const eventId = req.params.id;
+
+    needPlayerModel.updateOne({"_id": eventId},//query 
+        {$set: req.body },//set changes
+        function(err, item){
+            if(err){
+                res.status(400).json({"message": "saving modifeidEvent Failed"})
+            }
+            if(!item){
+                res.status(400).json({"message": "cannot find item with id"})
+            }
+            
+            return res.status(200).json({"message":"saving modfiedEvent Success"})
+        }
+    )
+})
+
+
+router.post("/modifyMessage", function(req, res){
+    console.log("saving modified Message request")
+    const id = req.body.id
+    const comment = req.body.comment
+
+    joinEventModel.updateOne( {"_id": id }, 
+        {$set: {"comment": comment}},
+        function (err, item){
+            if(err){
+                res.status(400).json({"message": "saving modified message Failed"})
+            }
+            if(!item){
+                res.status(400).json({"message": "cannot find item with id"})
+            }
+            
+            res.status(200).json({"message":"modifying message saved !"})
+        }        
+    )
+})
+
+
+
+
+
+
+
+
 
 module.exports = router;
