@@ -9,7 +9,7 @@ This is a front-end project for Sports Management.
 
 ### Install from source
 
-Make sure you have [Yarn](https://yarnpkg.com/en/docs/install) installed globally.
+Make sure you have [npm](https://www.npmjs.com/get-npm) installed globally.
 
 #### 1. Clone the project:
 
@@ -21,8 +21,8 @@ $ cd sports-management
 #### 2. Install depencies:
 
 ```bash
-$ yarn        # Install project dependencies
-$ yarn start  # Compile and launch on local environment
+$ npm install        # Install project dependencies
+$ npm start  # Compile and launch on local environment
 ```
 
 #### 4. Navigate to [http://localhost:3000](http://localhost:3000)
