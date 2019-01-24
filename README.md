@@ -9,7 +9,7 @@ Basically, MERN enviroment (MongoDB, Express, React, Node) is used and is deploy
 
 ### Install from source
 
-Make sure you have [Yarn](https://yarnpkg.com/en/docs/install) installed globally.
+Make sure you have [npm](https://www.npmjs.com/get-npm) installed globally.
 
 #### 1. Clone the project:
 
@@ -22,12 +22,12 @@ $ cd sports-management
 
 ```bash
 $ cd client
-$ yarn install  # Install project dependencies
-$ yarn start    # Compile and launch on local environment
+$ npm install   # Install project dependencies
+$ npm start     # Compile and launch on local environment
 
 $ cd ..         # To back to sport-management folder
 $ cd server
-$ yearn install # Install project dependencies for backend side
+$ npm install   # Install project dependencies for backend side
 $ node index    # To run the server
 ```
 
