@@ -2,11 +2,7 @@ import React from "react";
 import {Form,Container, Dropdown, Divider, Input, Button} from "semantic-ui-react";
 
 import Calendar from 'react-calendar'
-import {withRouter} from 'react-router-dom'
 import "./NeedPlayers.css";
-
-import {addToNeedPlayerList} from '../../actions/needPlayersActions';
-import {connect} from 'react-redux';
 
 class NeedPlayers extends React.Component {
 
@@ -25,33 +21,80 @@ class NeedPlayers extends React.Component {
 		cost: "",
 		mobile: "",
 		email: "",
-		description:""
-
+		description:"",
+		userId: this.props.loggedUserId,
+		isNewCategory: false,
+		newCategory:""
 	}
 
-	handleChange = (e, { value, name }) => this.setState({ [name] : value })
-	handleSearchChange = (e, { name, searchQuery }) => this.setState({ [name] : searchQuery })
-	handleInput = (e) => {
-		if(e.target.name === "minute" && e.target.value < 10){
-				e.target.value = "0"+ e.target.value
+	handleChange = (e, { value, name }) => {
+		if ( value === "Other"){
+			this.setState({ isNewCategory: true})
+			this.setState({ [name] : value })
+		}else{
+			this.setState({ isNewCategory: false})
+			this.setState({ [name] : value })
 		}
-		this.setState({ [e.target.name] : e.target.value});	
-	} 
-	onChange = (date) => {
-		console.log(date);
-		this.setState({ date }) 
 	}
+	handleSearchChange = (e, { name, searchQuery }) =>	this.setState({ [name] : searchQuery })
+	handleInput = (e) => this.setState({ [e.target.name] : e.target.value});	
+	onChange = (date) => this.setState({ date }) 
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.dispatch(addToNeedPlayerList(this.state, () => { 
-			this.props.history.push('/eventList'); 
-		}));
+		let tempCategory;
+		if (this.state.category === "Other" && (this.state.newCategory).length > 0){
+			tempCategory = this.state.newCategory.toUpperCase();
+		}else{
+			tempCategory = this.state.category;
+		}
+		let tempMinute = ('0'+ this.state.minute).slice(-2);
+		
+		let item = {
+			category: tempCategory,
+			title:this.state.title,
+			date: this.state.date, 
+			region: this.state.region,
+			address: this.state.address,
+			amPm: this.state.amPm,
+			hour:this.state.hour,
+			minute: tempMinute,
+			players: this.state.players,
+			joinedPlayers: 0,
+			duration:this.state.duration, 
+			cost: this.state.cost,
+			mobile: this.state.mobile,
+			email: this.state.email,
+			description:this.state.description,
+			userId: this.props.loggedUserId,
+		}
+		
+		this.props.onSubmit(item)
 	}
 
+	getCategoryOptions = (categoryList) => {
+		let tempOptions = categoryList.map( ( ele, index) => {
+			return ({ key: index, text: ele.category, value: ele.category});
+		})
+
+		tempOptions.splice(0,0, {key: tempOptions.length, text: "Other", value: "Other"})
+		return tempOptions; 
+	}
+
+	getRegionOptions = (categoryList) => {
+		let tempOptions = categoryList.map( ( ele, index) => {
+			return ({ key: index, text: ele.region, value: ele.region});
+		})
+
+		tempOptions.splice(0,0, {key: tempOptions.length, text: "All", value: "All"})
+		return tempOptions; 
+	}
 
 	render (){
-		const {categoryOptions,regionOptions } = this.props;
+		const {sportCategoryList,regionCategoryList } = this.props;
+		const sportsCategoryOptions = this.getCategoryOptions(sportCategoryList);
+		const regionCategoryOptions = this.getRegionOptions(regionCategoryList);
+
 		return (
 			<Container fluid className="findGuest">
 				<Container className="header">
@@ -68,14 +111,21 @@ class NeedPlayers extends React.Component {
 								className="findGuestForm_input"
 								clearable selection search
 								autoComplete="true"
-								options={categoryOptions}
+								options={sportsCategoryOptions}
 								onChange={this.handleChange}
 								onSearchChange={this.handleSearchChange}
 								value={this.state.category}
 								placeholder="What Sports ..." 
 							/>
 						</Form.Field>
-
+					{this.state.isNewCategory ?
+						<Form.Field inline>
+							<label htmlFor="newCategory">New Category : </label>
+							<Input name="newCategory" placeholder='Create new Category ...'
+									type="text" onChange={this.handleInput} className="title_input" 
+							/>
+						</Form.Field> 
+					: ""}
 						<Form.Field inline>
 							<label htmlFor="title">Title : </label>
 							<Input name="title" placeholder='Describe the event shortly ...'
@@ -103,7 +153,7 @@ class NeedPlayers extends React.Component {
 								className="findGuestForm_input"
 								clearable selection search
 								autoComplete="true"
-								options={regionOptions}
+								options={regionCategoryOptions}
 								onChange={this.handleChange}
 								onSearchChange={this.handleSearchChange}
 								value={this.state.region}
@@ -169,7 +219,6 @@ class NeedPlayers extends React.Component {
 									type="number" onChange={this.handleInput} 
 									className="title_input"
 									min="1" max="5"
-									 
 							/>
 						</Form.Field> 
 						
@@ -223,21 +272,4 @@ class NeedPlayers extends React.Component {
 	}
 }
 
-NeedPlayers.defaultProps = {
-	categoryOptions : [
-		{ key: 1, text: 'ALL', value: 'ALL' },
-		{ key: 2, text: 'BASKET BALL', value: 'BASKET BALL' },
-		{ key: 3, text: 'FOOT BALL', value: 'FOOT BALL' },
-		{ key: 4, text: 'BADMINTON', value: 'BADMINTON' },
-		{ key: 5, text: 'ICE HOCKEY', value: 'ICE HOCKEY' },
-	],
-	regionOptions : [
-		{ key: 1, text: 'ALL', value: 'ALL' },
-		{ key: 2, text: 'Helsinki', value: 'Helsinki' },
-		{ key: 3, text: 'Espoo', value: 'Espoo' },
-		{ key: 4, text: 'Vantaa', value: 'Vantaa' },
-	]
-}
-
-
-export default withRouter(connect()(NeedPlayers));
+export default NeedPlayers;

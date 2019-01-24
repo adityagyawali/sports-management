@@ -4,30 +4,6 @@ import {Container, Form, Button, Dropdown, Icon} from 'semantic-ui-react';
 import './SearchBar.css'; 
 
 class SearchBar extends React.Component{
-    
-    static defaultProps = {
-        categoryOptions : [
-            { key: 1, text: 'ALL', value: 'ALL' },
-            { key: 2, text: 'BASKET BALL', value: 'BASKET BALL' },
-            { key: 3, text: 'FOOT BALL', value: 'FOOT BALL' },
-            { key: 4, text: 'BADMINTON', value: 'BADMINTON' },
-            { key: 5, text: 'ICE HOCKEY', value: 'ICE HOCKEY' },
-        ],
-        regionOptions : [
-            { key: 1, text: 'ALL', value: 'ALL' },
-            { key: 2, text: 'Helsinki', value: 'Helsinki' },
-            { key: 3, text: 'Espoo', value: 'Espoo' },
-            { key: 4, text: 'Vantaa', value: 'Vantaa' },
-        ],
-        costOptions : [
-            { key: 1, text: 'ALL', value: 'ALL' },
-            { key: 2, text: 'Free', value: 0.5 },
-            { key: 3, text: 'Less than 5 euro', value: 5 },
-            { key: 4, text: 'Less than 10 euro', value: 10 },
-        ],
-
-    }
-
 
     state = {
         category: "",
@@ -47,9 +23,41 @@ class SearchBar extends React.Component{
 
     handleChange = (e, { value, name }) => this.setState({ [name]: value })
     handleSearchChange = (e, { name, searchQuery }) => this.setState({ [name]: searchQuery })
+    
+    getCategoryOptions = (categoryList) => {
+		let tempOptions = categoryList.map( ( ele, index) => {
+			return ({ key: index, text: ele.category, value: ele.category});
+		})
 
+		tempOptions.splice(0,0, {key: tempOptions.length, text: "ALL", value: "ALL"})
+		return tempOptions; 
+	}
+
+	getRegionOptions = (categoryList) => {
+		let tempOptions = categoryList.map( ( ele, index) => {
+			return ({ key: index, text: ele.region, value: ele.region});
+		})
+
+		tempOptions.splice(0,0, {key: tempOptions.length, text: "ALL", value: "ALL"})
+		return tempOptions; 
+    }
+    
+    getCostOptions = () => {
+        let tempOptions = []
+        for(let i=0; i<11; i=i+5){
+            tempOptions.push ({ key: i, text: "Less than "+i+" eruo", value: i})
+        }
+        tempOptions.splice(0,0, {key: tempOptions.length, text: "ALL", value: "ALL"})
+        return tempOptions;
+    }
+    
     render(){
-        const {categoryOptions, regionOptions, costOptions } = this.props;
+        const {sportCategoryList,regionCategoryList } = this.props;
+		const sportsCategoryOptions = this.getCategoryOptions(sportCategoryList);
+		const regionCategoryOptions = this.getRegionOptions(regionCategoryList);
+        const costCategoryOptions = this.getCostOptions();
+        
+
         return (
             <Container className="searchBar">
                 <Form className="searchForm" onSubmit={this.onSubmit}>
@@ -59,7 +67,7 @@ class SearchBar extends React.Component{
                         className="searchInput"
                         clearable selection search
                         autoComplete="true"
-                        options={categoryOptions}
+                        options={sportsCategoryOptions}
                         onChange={this.handleChange}
                         onSearchChange={this.handleSearchChange}
                         value={this.state.category}
@@ -71,7 +79,7 @@ class SearchBar extends React.Component{
                         className="searchInput"
                         clearable selection search
                         autoComplete="true"
-                        options={regionOptions}
+                        options={regionCategoryOptions}
                         onChange={this.handleChange}
                         onSearchChange={this.handleSearchChange}
                         value={this.state.region}
@@ -83,14 +91,14 @@ class SearchBar extends React.Component{
                         className="searchInput"
                         clearable selection search
                         autoComplete="true"
-                        options={costOptions}
+                        options={costCategoryOptions}
                         onChange={this.handleChange}
                         onSearchChange={this.handleSearchChange}
                         value={this.state.cost}
                         placeholder="The cost" 
                     />  
                    
-                    <Button color="blue" type="submit" className="searchButton"> <Icon name='search'  /></Button>
+                    <Button color="blue" type="submit" className="searchButton"> <Icon name='search'/></Button>
                 </Form>
             </Container>
         );

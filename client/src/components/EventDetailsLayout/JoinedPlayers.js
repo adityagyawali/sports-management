@@ -13,6 +13,7 @@ class JoinedPlayers extends React.Component{
         joinedPlayerId: this.props.player._id,
         comment: this.props.player.comment,
         userId: this.props.player.userId,
+        userName: this.props.player.userName,
         isModifyMode: false,
     }
 
@@ -29,7 +30,7 @@ class JoinedPlayers extends React.Component{
 
         this.props.dispatch(modifyMessageOfJoinedPlayer( item, 
             () => this.setState({ isModifyMode: false}) 
-        )) // when database response 200
+        ))
     }
 
     onChange = (e) => {
@@ -44,7 +45,11 @@ class JoinedPlayers extends React.Component{
         if ( !isModifyMode){
             joinedPlayerForm =
                 <Header.Subheader>
-                    Message: {this.state.comment} <Button onClick={this.handleModify}className="messageModifyButton" size="small" color="red" >Modify</Button>
+                    Message: {this.state.comment} 
+                    { this.state.userId === this.props.loggedUserId ?
+                        (<Button onClick={this.handleModify}className="messageModifyButton" size="small" color="red" >Modify</Button>)
+                        : ""
+                    }
                 </Header.Subheader>
         }else{
             joinedPlayerForm =
@@ -62,7 +67,7 @@ class JoinedPlayers extends React.Component{
             <Header as='h4' image className="joinedPlayerDetail">
                 <Image src={Mark} rounded size='small' />
                 <Header.Content>
-                    {this.state.userId}
+                    {this.state.userName}
                     {joinedPlayerForm}
                 </Header.Content>
             </Header> 

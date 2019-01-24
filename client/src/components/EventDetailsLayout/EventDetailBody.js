@@ -18,12 +18,13 @@ class EventDetailBody extends React.Component {
             joinedPlayerList = <h3>Be the first challenger !</h3>
         }else{
             joinedPlayerList = joinedPlayers.map( (player, index) => {
-                return <JoinedPlayers key={"player_"+ index} player={player} />
+                return <JoinedPlayers key={"player_"+ index} player={player} loggedUserId={this.props.loggedUserId} />
             });
         }
 
-
         const { description, mobile, email } = this.props.event;
+        const userId = this.props.event.userId;
+
         return (
 
             <Container className="detailBox">
@@ -70,9 +71,11 @@ class EventDetailBody extends React.Component {
                     </Container>
                 </Container>
                 
-                <Container className="modifiyButtonBox">
-                    <Button color="red" size="big" onClick={this.onClickModify}><Icon name="cog"/>Modify</Button>
-                </Container>
+                {userId === this.props.loggedUserId ?
+                    (<Container className="modifiyButtonBox">
+                        <Button color="red" size="big" onClick={this.onClickModify}><Icon name="cog"/>Modify</Button>
+                    </Container>) : ""
+                }
             </Container>
         );
     }

@@ -10,7 +10,7 @@ import Icehockey from "../../assets/icehockey.jpg";
 import Golf from "../../assets/golf.jpg";
 import Ski from "../../assets/ski.jpg";
 import Cycle from "../../assets/cycle.jpg";
-import Aerobics from "../../assets/aerobics.jpg";
+import Aerobics from "../../assets/aerobic.jpg";
 import MotorCycle from "../../assets/motorCycle.jpg";
 import VolleyBall from "../../assets/volleyBall.jpg";
 import Tennis from "../../assets/tennis.jpg";

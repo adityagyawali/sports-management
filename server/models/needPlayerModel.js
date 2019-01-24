@@ -17,7 +17,8 @@ let Schema = mongoose.Schema({
     email: String,
     description: String,
     registeredDate: Date,
-    modifiedDate: Date
+    modifiedDate: Date,
+    userId: String
 });
 
 module.exports = mongoose.model("eventItems", Schema);

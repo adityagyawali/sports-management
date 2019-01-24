@@ -6,6 +6,17 @@ import './Event.css';
 
 class Event extends React.Component {       
 
+    getCategoryColor = (category) => {
+        const {sportCategoryList} = this.props;
+        let categoryColor = "aqua"
+        for(let i=0; i<sportCategoryList.length; i++){
+            if(category === sportCategoryList[i].category){
+                categoryColor = sportCategoryList[i].categoryColor.toLowerCase();
+                return categoryColor;
+            }
+        }
+    }
+
     handlePlayerIcons = (players, joinedPlayers) => {
         let playerIconsList = [];
         
@@ -27,22 +38,6 @@ class Event extends React.Component {
         return playerIconsList;
     }
 
-    handleCaegoryColor = (category) => {
-        let categoryColor;
-        if(category === "BASKET BALL"){
-            categoryColor = "orange";
-        }else if(category === "FOOT BALL"){
-            categoryColor = "green";
-        }else if(category === "BADMINTON"){
-            categoryColor = "teal";
-        }else if(category === "FLOOR BALL"){
-            categoryColor = "blue";
-        }else {
-            categoryColor = "red";
-        }
-        return categoryColor;
-    }
-
     handleDateFormat = (date) => {
         const newDate = new Date(date).toDateString().split(" ");
         newDate.shift();
@@ -57,11 +52,8 @@ class Event extends React.Component {
         const dateFormat = this.handleDateFormat(date);
         const time = amPm + " " + hour + " : " + minute; 
         const playerIconsList = this.handlePlayerIcons(players, joinedPlayers);
-        const sportCategoryColor = this.handleCaegoryColor(category);
-        
-
-
-        
+        const sportCategoryColor = this.getCategoryColor(category);
+                
         return (
         <Table.Row>
             <Table.Cell className="eventTablefixedTitleWidth" >

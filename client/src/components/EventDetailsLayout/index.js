@@ -10,12 +10,21 @@ import EventDetailBody from "./EventDetailBody";
 
 import {connect} from 'react-redux';
 import {getEventDetail, getJoinedPlayers} from '../../actions/eventDetailActions';
+import { getSportsCategory} from '../../actions/needPlayersActions';
 
 class EventDetailsLayout extends React.Component{
-    componentDidMount(){
-        const id = window.location.href.split("/").slice(-1)[0]
-        this.props.dispatch(getEventDetail(id));
-        this.props.dispatch(getJoinedPlayers(id));
+    
+    componentDidMount(){  
+        if(!this.props.isLogged){
+            alert("You need Log in first!!")
+            this.props.history.push("/login")
+        }else{
+            
+            const id = window.location.href.split("/").slice(-1)[0]
+            this.props.dispatch(getEventDetail(id));
+            this.props.dispatch(getJoinedPlayers(id));
+            this.props.dispatch(getSportsCategory());
+        }
     }
 
     handleJoinSubmit = () => {
@@ -30,24 +39,26 @@ class EventDetailsLayout extends React.Component{
     }
 
     render(){
+        
         let eventDetail;
-        if (this.props.loading || this.props.joinedPlayerLoading){
+        if (this.props.eventDetailloading || this.props.joinedPlayerLoading || this.props.sportsCategoryLoading){
             eventDetail = (
                 <Container > 
                     <Loader active inline='centered' />
                 </Container >
             )
-        }else if ( this.props.loading === false && this.props.joinedPlayerLoading === false) {
+        }else if ( this.props.eventDetailloading === false && this.props.joinedPlayerLoading === false && this.props.sportsCategoryLoading === false) {
             const joinedNum = this.props.joinedPlayerList.length 
-            const {players} = this.props.list;
+            const {players} = this.props.eventDetaillist;
+            const userName = this.props.loggedUserName.split("@")[0]
             
             eventDetail = (
             <Container >
-                <EventDetailHead event={this.props.list} joinedPlayerNum={joinedNum}/>
+                <EventDetailHead event={this.props.eventDetaillist} joinedPlayerNum={joinedNum} userName={userName} sportCategoryList={this.props.sportCategoryList}/>
                 <hr />
-                <EventJoin eventId={this.props.list._id} userId={"defaultUserId"} onSubmit={this.handleJoinSubmit} joinedPlayerNum={joinedNum} players={players}/>
+                <EventJoin eventId={this.props.eventDetaillist._id} userId={this.props.loggedUserId} userName={userName} onSubmit={this.handleJoinSubmit} joinedPlayerNum={joinedNum} players={players}/>
                 <hr />
-                <EventDetailBody event={this.props.list} joinedPlayerList={this.props.joinedPlayerList} onModify={this.handleModifySubmit}/>
+                <EventDetailBody event={this.props.eventDetaillist} loggedUserId={this.props.loggedUserId} joinedPlayerList={this.props.joinedPlayerList} onModify={this.handleModifySubmit}/>
             </Container>)
         }
 
@@ -64,10 +75,15 @@ class EventDetailsLayout extends React.Component{
 
 
 const mapStateToProps = (state) => ({
-    list: state.eventDetail.list,
+    isLogged: state.login.isLogged,
+    loggedUserId : state.login.userId,
+    loggedUserName: state.login.userName,
+    eventDetailloading: state.eventDetail.loading,
+    joinedPlayerLoading: state.eventDetail.joinedPlayerLoading,
+    sportsCategoryLoading: state.needPlayerList.loading,
+    eventDetaillist: state.eventDetail.list,
     joinedPlayerList: state.eventDetail.joinedPlayer,
-    loading: state.eventDetail.loading,
-    joinedPlayerLoading: state.eventDetail.joinedPlayerLoading
+    sportCategoryList: state.needPlayerList.sportCategoryList
 })
 
 export default connect(mapStateToProps)(EventDetailsLayout); 

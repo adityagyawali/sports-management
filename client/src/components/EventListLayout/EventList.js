@@ -8,9 +8,10 @@ import Event from './Event';
 class EventList extends React.Component {   
 
     render(){
-        const {eventList} = this.props;
+        const {eventList, sportCategoryList} = this.props;
+
         let tableBodyList = eventList.map( (event, index) => {
-            return (<Event key={"event_"+ index} event={event}/>);
+            return (<Event key={"event_"+ index} event={event} sportCategoryList={sportCategoryList}/>);
         });
         
     

@@ -35,7 +35,7 @@ export const getEventList = ()=> {
 
         dispatch(getEventListLoading());
 
-        fetch("/api/getEventList", getObject).then( (response) => {
+        fetch("/getEventList", getObject).then( (response) => {
             if(response.ok){
                 response.json().then((data) => {
                     dispatch(getEventListSuccess(data));

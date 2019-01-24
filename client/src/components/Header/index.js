@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import { Menu, Segment, Button } from "semantic-ui-react";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import { logOut } from "../../actions/authAction";
+import { Link } from "react-router-dom";
 import "./index.css";
+
+import { logout } from '../../actions/signUp_LogInActions'
+import { connect } from "react-redux";
 
 class Header extends Component {
 	state = { activeItem: "Home" };
 
-	logout = e => {
-		e.preventDefault();
-		this.props.logOut();
-		this.props.history.push("/");
-	};
+	handleLogout = () => {
+		this.props.dispatch(logout());
+	}; 
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
 	render() {
 		const { activeItem } = this.state;
-		console.log("this.props.auth.isAuthenticated", this.props.auth);
+		console.log("this.props.isLogged", this.props.isLogged);
 		return (
 			<Segment inverted>
 				<Menu inverted secondary>
@@ -29,8 +28,6 @@ class Header extends Component {
 						as={Link} 
 						to='/app'
 					/>
-
-
 
 					<Menu.Item
 						name="Need Players"
@@ -48,34 +45,14 @@ class Header extends Component {
 						to="/eventList"
 					/>
 
-
-				{this.props.auth.isAuthenticated ? (
 					<Menu.Menu position="right">
 						<Menu.Item>
 							<Button primary>
-								{this.props.auth.user.name.split(" ")[0]}
-							</Button>
-						</Menu.Item>
-						<Menu.Item>
-							<Button primary onClick={this.logout}>
-								Logout
+								{this.props.isLogged ?  (<Link to="/" onClick={this.handleLogout}>Log Out</Link>) : (<Link to="/login">Log In</Link>) }
 							</Button>
 						</Menu.Item>
 					</Menu.Menu>
-				) : (
-					<Menu.Menu position="right">
-						{/* <Menu.Item>
-						<Button primary>
-							<Link to="/register">Sign Up</Link>
-						</Button>
-					</Menu.Item> */}
-						<Menu.Item>
-							<Button primary>
-								<Link to="/login">Log In</Link>
-							</Button>
-						</Menu.Item>
-					</Menu.Menu>
-				)}
+		
 				</Menu>
 			</Segment>
 		);
@@ -83,12 +60,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-	auth: state.auth
+	isLogged: state.login.isLogged
 });
 
-export default withRouter(
-	connect(
-		mapStateToProps,
-		{ logOut }
-	)(Header)
-);
+export default connect(mapStateToProps)(Header);
