@@ -23,7 +23,7 @@ $ cd client
 $ yarn install  # Install project dependencies
 $ yarn start    # Compile and launch on local environment
 
-$ cd .. # To back to sport-management folder
+$ cd ..         # To back to sport-management folder
 $ cd server
 $ yearn install # Install project dependencies for backend side
 $ node index    # To run the server
