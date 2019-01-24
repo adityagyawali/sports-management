@@ -14,7 +14,7 @@ Make sure you have [Yarn](https://yarnpkg.com/en/docs/install) installed globall
 #### 1. Clone the project:
 
 ```bash
-$ git clone https://github.com/adityagyawali/sports-management.git
+$ git clone https://github.com/Woongsik/sports-management.git
 $ cd sports-management
 ```
 
@@ -22,7 +22,7 @@ $ cd sports-management
 
 ```bash
 $ yarn        # Install project dependencies
-$ yarn start    # Compile and launch on local environment
+$ yarn start  # Compile and launch on local environment
 ```
 
 #### 4. Navigate to [http://localhost:3000](http://localhost:3000)
