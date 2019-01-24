@@ -1,4 +1,6 @@
 # FIND YOUR SPORTS 
+This is a project during the full-stack web development course with OpiFrame.
+Basically, MERN enviroment and is deployed on Heroku. ( https://fast-ravine-77191.herokuapp.com )
 
 ## Requirements
 
