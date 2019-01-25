@@ -1,6 +1,6 @@
 # FIND YOUR SPORTS 
 This is a project during the full-stack web development course with OpiFrame.
-Basically, MERN enviroment (MongoDB, Express, React, Node) is used and is deployed on Heroku. ( https://fast-ravine-77191.herokuapp.com )
+Basically, MERN enviroment (MongoDB, Express, React, Node) is used and is deployed on Heroku. ( https://find-your-sport.herokuapp.com )
 
 ## Requirements
 
