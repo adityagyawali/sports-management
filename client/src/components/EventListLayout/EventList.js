@@ -18,7 +18,7 @@ class EventList extends React.Component {
         return (
             <Container className="eventListBox">
                 <h1>All the sports waiting for you !</h1>
-                <Table sortable celled className="eventList">
+                <Table celled className="eventList">
                 <Table.Header>
                     <Table.Row> 
                         <Table.HeaderCell rowSpan="2">
@@ -37,7 +37,7 @@ class EventList extends React.Component {
                             ADDRESS
                         </Table.HeaderCell>
                         <Table.HeaderCell>
-                            COST
+                            COST<br/>(1 person)
                         </Table.HeaderCell>                                
                     </Table.Row>
                 </Table.Header>

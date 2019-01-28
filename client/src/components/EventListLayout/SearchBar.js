@@ -14,10 +14,11 @@ class SearchBar extends React.Component{
     onSubmit = (e) => {
         e.preventDefault();
         let filteringInfo = {
-            category: this.state.category.length > 0 ? this.state.category : "ALL",
-            region: this.state.region.length > 0 ? this.state.region : "ALL",
-            cost: this.state.cost > 0 ? this.state.cost : "ALL"
+            category: (this.state.category).length > 0 ? this.state.category : "ALL",
+            region: (this.state.region).length > 0 ? this.state.region : "ALL",
+            cost: (this.state.cost) >= 0 ? this.state.cost : "ALL"
         }
+
         this.props.onChange(filteringInfo);
     }
 
@@ -45,7 +46,8 @@ class SearchBar extends React.Component{
     getCostOptions = () => {
         let tempOptions = []
         for(let i=0; i<11; i=i+5){
-            tempOptions.push ({ key: i, text: "Less than "+i+" eruo", value: i})
+            if(i=== 0 )tempOptions.push ({ key: i, text: "Free", value: i})
+            else tempOptions.push ({ key: i, text: "Less than "+i+" eruo", value: i})
         }
         tempOptions.splice(0,0, {key: tempOptions.length, text: "ALL", value: "ALL"})
         return tempOptions;

@@ -71,7 +71,7 @@ class Event extends React.Component {
             </Table.Cell>
             <Table.Cell>{time}</Table.Cell>
             <Table.Cell>{address}, <br/> {region}</Table.Cell>
-            <Table.Cell>{cost}</Table.Cell>
+            <Table.Cell>€ {cost}</Table.Cell>
         </Table.Row>
         );
     }
