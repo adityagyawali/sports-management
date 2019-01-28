@@ -1,12 +1,14 @@
-import { GET_MODIFY_DETAIL_SUCCESS, 
-        GET_MODIFY_DETAIL_FAILED, 
-        LOADING, 
-        SUBMIT_MODIFIED_DETAIL_SUCCESS,
-        SUBMIT_MODIFIED_DETAIL_FAILED
+import { GET_MODIFY_EVENT_SUCCESS, 
+        GET_MODIFY_EVENT_FAILED,  
+        SUBMIT_MODIFIED_EVENT_SUCCESS,
+        SUBMIT_MODIFIED_EVENT_FAILED,
+        DELETE_EVENT_SUCCESS,
+        DELETE_EVENT_FAILED,
+        LOADING
 } from "../actions/modifyEventActions";
 
 const initalState = {
-    loading: true,
+    loading: false,
     eventDetail : {},
     error: ""
 }
@@ -19,14 +21,14 @@ function modifyEventReducer (state = initalState, action ){
                 loading: true
             }
 
-        case GET_MODIFY_DETAIL_SUCCESS:
+        case GET_MODIFY_EVENT_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 eventDetail: action.item
             }
 
-        case GET_MODIFY_DETAIL_FAILED:
+        case GET_MODIFY_EVENT_FAILED:
             return {
                 ...state,
                 loading: false,
@@ -34,13 +36,26 @@ function modifyEventReducer (state = initalState, action ){
             }    
 
 
-        case SUBMIT_MODIFIED_DETAIL_SUCCESS:
+        case SUBMIT_MODIFIED_EVENT_SUCCESS:
             return {
                 ...state,
                 loading: false
             }
         
-        case SUBMIT_MODIFIED_DETAIL_FAILED:
+        case SUBMIT_MODIFIED_EVENT_FAILED:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
+        
+        case DELETE_EVENT_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            }
+        
+        case DELETE_EVENT_FAILED:
             return {
                 ...state,
                 loading: false,

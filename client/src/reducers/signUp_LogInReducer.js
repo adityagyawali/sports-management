@@ -120,6 +120,7 @@ const signup_LoginReducer = (state = initialState, action) => {
 			}
 			saveToStorage(state.isLogged, action.error, "", "");
 			return tempState;
+		
 		default:
 			return state
 	}

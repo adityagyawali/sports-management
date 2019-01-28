@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class sportCard extends React.Component {
 
     render(){
-        const {image} = this.props;
+        let {image} = this.props;
         let imageTitle = image.toString().split("/")[3].split(".")[0].toUpperCase();
         return(
             

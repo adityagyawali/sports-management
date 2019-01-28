@@ -24,12 +24,21 @@ class NeedPlayerLayout extends React.Component {
 			this.props.history.push('/eventList'); 
 		}));
 	}
+
+	handleCancel = () => {
+		this.props.history.push("/eventList")
+	}
 	
 	render() {
 		return (
 			<Container fluid>
 				<Header />				
-				<NeedPlayersForm onSubmit={this.handleSubmit} loggedUserId={this.props.loggedUserId} regionCategoryList={this.props.regionCategoryList} sportCategoryList={this.props.sportCategoryList}/>
+				<NeedPlayersForm onSubmit={this.handleSubmit} onCancel={this.handleCancel}
+					loggedUserName={this.props.loggedUserName}
+					loggedUserId={this.props.loggedUserId} 
+					regionCategoryList={this.props.regionCategoryList} 
+					sportCategoryList={this.props.sportCategoryList}
+				/>
 				<Footer />
 			</Container>
 		);
@@ -39,6 +48,7 @@ class NeedPlayerLayout extends React.Component {
 const mapStateToProps = (state)=> ({
 	isLogged: state.login.isLogged,
 	loggedUserId : state.login.userId,
+	loggedUserName: (state.login.userName),
 	regionCategoryList: state.needPlayerList.regionCategoryList,
 	sportCategoryList: state.needPlayerList.sportCategoryList
 })

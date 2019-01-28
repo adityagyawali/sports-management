@@ -46,7 +46,7 @@ app.use(session({
     cookie:{maxAge:1000*60*60*24},
 	store: new MongoStore({
 			collection:"session",
-			url:"mongodb://localhost/sportsEventDb",
+			mongooseConnection:mongoose.connection, //Heroku deploy
 			ttl:24*60*60
 	})
 }));
@@ -136,17 +136,29 @@ app.post("/signUp", function(req,res) {
 		return res.status(409).json({"message":"provide credentials"})		
 	}
 	
-	let user = new signUp_LoginModel({
-		"username": req.body.username,
-        "password": createSaltedPassword(req.body.password),
-        "email": req.body.email
-	})
-
-	user.save(function(err) {
+	//check if the email is already existed
+	signUp_LoginModel.findOne({"email": req.body.email}, function(err, user){
 		if(err) {
-			return res.status(409).json({"message":"username already in use"})
+			return res.status(409).json({"message":"signup failed with "+ err})
 		}
-		return res.status(200).json({"message":"success"})
+		
+		if( user === null ){   
+			let userInfo = new signUp_LoginModel({
+				"username": req.body.username,
+				"password": createSaltedPassword(req.body.password),
+				"email": req.body.email
+			})
+		
+			userInfo.save(function(err) {
+				if(err) {
+					return res.status(409).json({"message":"signup failed with "+ err})
+				}
+				return res.status(200).json({"message":"success"})
+			})
+		}else {
+			console.log("email already in use")
+			return res.status(409).json({"message":"the email is already in use"})
+		}
 	})
 });
 

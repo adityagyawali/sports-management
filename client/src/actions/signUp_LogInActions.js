@@ -69,6 +69,7 @@ export const signUp = (item, goToLoginPage) => {
                 })
             }else{
                 dispatch(singUpFailed("response not ok "))
+                alert("email already in use")
             }
         }).catch( error => {
             dispatch(singUpFailed("Server not ok with" + error))
@@ -93,7 +94,6 @@ export const logIn = (item, goToHome)=> {
             if(response.ok){ 
                 response.json().then( resData => {
                     dispatch(logInSuccess(resData))
-                    alert("Login Success")
                     goToHome() 
                 }).catch( error =>{
                     dispatch(logInFailed("response.json() not ok with "+ error))
@@ -110,7 +110,7 @@ export const logIn = (item, goToHome)=> {
     }
 }
 
-export const logout = () => {
+export const logout = ( goToHome) => {
 	return dispatch => {  
 	  let logoutObject = {
 		  method:"POST",
@@ -122,10 +122,12 @@ export const logout = () => {
         dispatch(logInLoading());
       
         fetch("/logout", logoutObject).then((response) => {
-		  if(response.ok) {
-              dispatch(logoutSuccess());
+		    if(response.ok) {
+                goToHome();
+                dispatch(logoutSuccess());
+               
 		  } else {
-			  dispatch(logoutFailed("Server responded with status:"+response.status));
+			    dispatch(logoutFailed("Server responded with status:"+response.status));
 		  }
 	  }).catch((error) => {
 		  dispatch(logoutFailed("Server responded with error"));

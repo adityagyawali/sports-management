@@ -22,7 +22,10 @@
 
 .detailHeadRight{ 
     text-align: left;
-    padding: 0 2%;
+    padding: 0 0 0 2%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .detailHeadRight i.icon.child, .detailHeadRight i.icon.users {
@@ -40,5 +43,12 @@
 }
 
 .detailHeadRight h1{
-    margin: -5px 0;
+    margin: auto 0 !important;
+}
+.detailHeadRight h4{
+    margin: auto 0 !important;
+}
+
+.detailHeadRight .marginBottomZero{
+    margin-bottom: 0 !important;
 }

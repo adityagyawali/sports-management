@@ -25,6 +25,7 @@ router.post("/addToNeedPlayersList", function(req,res){
         email: req.body.email,
         description: req.body.description,
         userId: req.body.userId,
+        userName: req.body.userName,
         registeredDate: new Date(),
         modifiedDate: new Date()
     });
@@ -37,10 +38,6 @@ router.post("/addToNeedPlayersList", function(req,res){
     });
 
 });
-
-
-
-
 
 router.get("/getEventDetail/:id", function(req, res){
     console.log("api/getEventDetail request arrived !!")
@@ -99,7 +96,7 @@ router.post("/getJoinedPlayers/:id", function (req, res){
     }) 
 })
 
-router.post("/getModifyDetail/:id", function(req,res){
+router.post("/getModifyEvent/:id", function(req,res){
     console.log("modify Event request")
     const eventId = req.params.id;
     needPlayerModel.findOne({"_id": eventId}, function(err, item){
@@ -117,8 +114,13 @@ router.post("/saveModifiedEvent/:id", function(req,res){
     console.log("saving modified Event request")
     const eventId = req.params.id;
 
-    needPlayerModel.updateOne({"_id": eventId},//query 
-        {$set: req.body },//set changes
+    let item = {
+        ...req.body,
+        modifiedDate: new Date()
+    }
+
+    needPlayerModel.updateOne({"_id": eventId}, //query 
+        {$set: item },//set changes
         function(err, item){
             if(err){
                 res.status(400).json({"message": "saving modifeidEvent Failed"})
@@ -132,7 +134,27 @@ router.post("/saveModifiedEvent/:id", function(req,res){
     )
 })
 
+router.post("/deleteEvent/:id", function(req,res){
+    console.log("delete event request")
+    const id = req.params.id;
+    
+    //database action 두개의 데이타를 지워야 함.
+    needPlayerModel.remove({"_id": id}, function (err, item){
+        if(err) res.status(409).json({"message":"delete event failed with"+ err})
+        if(!item) res.status(409).json({"message":"delete event failed with item not found"})
 
+        joinEventModel.remove({"eventId": id}, function(err, item){
+            if(err) res.status(409).json({"message":"delete event failed with"+ err})
+            if(!item) res.status(409).json({"message":"delete event failed with item not found"})
+            
+            res.status(200).json({"message": "delete event success"})
+        })
+    })
+})
+
+
+
+//Message routes
 router.post("/modifyMessage", function(req, res){
     console.log("saving modified Message request")
     const id = req.body.id
@@ -153,12 +175,35 @@ router.post("/modifyMessage", function(req, res){
     )
 })
 
+router.post("/deleteMessage/:id", function(req, res){
+    console.log("delete Message request")
+    const joinedId = req.params.id;
+    
+    //get EventId from Joined collection
+    joinEventModel.findOne( {"_id": joinedId }).then( response => {
+        const eventId = response.eventId;
+        joinEventModel.deleteOne({"_id": joinedId}).then( response => {
+            console.log("delete message")
+            needPlayerModel.updateOne({"_id": eventId}, 
+                {$inc: {"joinedPlayers": -1}}
+            ).then( response => {
+                console.log("delete joinedPlayer")
+                res.status(200).json({"message":"delete message & dscrease Joinedplyaer success"})
+            }).catch( error => {
+                res.status(409).json({"message": "needPlayerModel decrease joinedPlayers failed with"+ error})
+            })
+            
+        }).catch( error => {
+            res.status(409).json({"message": "delete message failed with"+ error})
+        })
+        
+    }).catch( error => {
+        res.status(409).json({"message": "delete message failed with"+ error})
+    })
 
 
-
-
-
-
+    
+})
 
 
 module.exports = router;

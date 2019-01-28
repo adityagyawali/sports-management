@@ -18,7 +18,8 @@ let Schema = mongoose.Schema({
     description: String,
     registeredDate: Date,
     modifiedDate: Date,
-    userId: String
+    userId: String,
+    userName: String
 });
 
 module.exports = mongoose.model("eventItems", Schema);

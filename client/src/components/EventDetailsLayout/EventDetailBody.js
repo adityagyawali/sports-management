@@ -1,14 +1,28 @@
 import React from 'react';
-import {Container, Icon, Header, Button} from 'semantic-ui-react';
+import {Container, Icon, Header, Button, Confirm} from 'semantic-ui-react';
 
 import './EventDetailBody.css';
 import JoinedPlayers from './JoinedPlayers';
 
-
 class EventDetailBody extends React.Component {
+    //for confirm modal
+    state = { open : false }
+    open = () => this.setState({ open: true })
+    close = () => this.setState({ open: false })
     
-    onClickModify = ()=> {
-        this.props.onModify();
+    handleModifyEvent = ()=> {
+        this.props.onModifyEvent();
+    }
+    handleDeleteEvent = () => {
+        this.close()
+        this.props.onDeleteEvent();
+    }
+
+    handleModifyMessage = (item) => {
+        this.props.onModifyMessage(item)
+    }
+    handleDeleteMessage = (id) => {
+        this.props.onDeleteMessage(id)
     }
 
     render(){
@@ -18,9 +32,12 @@ class EventDetailBody extends React.Component {
             joinedPlayerList = <h3>Be the first challenger !</h3>
         }else{
             joinedPlayerList = joinedPlayers.map( (player, index) => {
-                return <JoinedPlayers key={"player_"+ index} player={player} loggedUserId={this.props.loggedUserId} />
+                return <JoinedPlayers key={"player_"+ index} player={player} 
+                    loggedUserId={this.props.loggedUserId} 
+                    modifyMessage={this.handleModifyMessage}
+                    deleteMessage={this.handleDeleteMessage}/>
             });
-        }
+        }  
 
         const { description, mobile, email } = this.props.event;
         const userId = this.props.event.userId;
@@ -73,7 +90,16 @@ class EventDetailBody extends React.Component {
                 
                 {userId === this.props.loggedUserId ?
                     (<Container className="modifiyButtonBox">
-                        <Button color="red" size="big" onClick={this.onClickModify}><Icon name="cog"/>Modify</Button>
+                        <Button color="red" size="big" onClick={this.handleModifyEvent}><Icon name="cog"/>Modify</Button>
+                        <Button color="facebook" size="big" onClick={this.open}><Icon name="delete"/>Delete</Button>
+                        
+                        <Confirm style={{height: "auto"}} 
+                            open={this.state.open} 
+                            size="small"
+                            content={'Are you sure that You want to delete the Event?'}
+                            onCancel={this.close} 
+                            onConfirm={this.handleDeleteEvent} />
+                        
                     </Container>) : ""
                 }
             </Container>

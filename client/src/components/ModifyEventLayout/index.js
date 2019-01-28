@@ -5,12 +5,12 @@ import Header from "../Header";
 import Footer from "../Footer";
 import ModifyEventForm from "./ModifyEventForm";
 
-import {getModifyDetail} from '../../actions/modifyEventActions';
+import {getModifyEvent, submitModifyEvent} from '../../actions/modifyEventActions';
 import {getSportsCategory, getRegionCategory} from '../../actions/needPlayersActions';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 
-import {submitModifyEvent} from '../../actions/modifyEventActions';
+
 
 class ModifyEvent extends React.Component {
 
@@ -20,7 +20,7 @@ class ModifyEvent extends React.Component {
             this.props.history.push("/login")
 		}else{
             const id = window.location.href.split("/").slice(-1)[0]
-            this.props.dispatch(getModifyDetail(id));
+            this.props.dispatch(getModifyEvent(id));
 			this.props.dispatch(getSportsCategory())
 			this.props.dispatch(getRegionCategory())
 		}
