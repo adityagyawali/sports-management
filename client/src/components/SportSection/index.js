@@ -11,16 +11,16 @@ import Golf from "../../assets/golf.jpg";
 import Ski from "../../assets/ski.jpg";
 import Cycle from "../../assets/cycle.jpg";
 import Aerobics from "../../assets/aerobic.jpg";
-import MotorCycle from "../../assets/motorCycle.jpg";
-import VolleyBall from "../../assets/volleyBall.jpg";
 import Tennis from "../../assets/tennis.jpg";
-import UsFootball from "../../assets/usFootball.jpg";
 import Badminton from "../../assets/badminton.jpg";
-
+import Motorcycle from '../../assets/motorcycle.jpg';
+import Volleyball from '../../assets/volleyball.jpg';
+import Usfootball from '../../assets/usfootball.jpg';
+ 
 class Sport extends React.Component {
   
   getImageList = () => {
-    const imageList = [Football, Basketball, Icehockey, Golf, Ski, Cycle, Aerobics, MotorCycle, VolleyBall, Tennis, UsFootball, Badminton];
+    const imageList = [Football, Basketball, Icehockey, Golf, Ski, Cycle, Aerobics, Motorcycle, Volleyball, Tennis, Usfootball, Badminton];
     const CardImages = imageList.map ( (image, index) => {
       return (<SportCard key={"sportCard_"+index} image = {image} />); 
     });

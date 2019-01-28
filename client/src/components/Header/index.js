@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Menu, Segment, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Menu, Segment, Icon, Image, Dropdown, Button } from "semantic-ui-react";
+import { Link, withRouter } from "react-router-dom";
 import "./index.css";
+import Mark from '../../assets/mark.png';
 
 import { logout } from '../../actions/signUp_LogInActions'
 import { connect } from "react-redux";
@@ -10,14 +11,36 @@ class Header extends Component {
 	state = { activeItem: "Home" };
 
 	handleLogout = () => {
-		this.props.dispatch(logout());
-	}; 
+		this.props.dispatch(logout( ()=> {
+			this.props.history.push("/")
+		}))
+	}
 
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
+	getTrigger = () => {
+		if( (this.props.isLogged) ){
+			return (<span>
+				<Image avatar src={Mark} /> {this.props.userName.split("@")[0]}
+				  </span>
+			)	
+		}
+	}
+
+	getUserOptions = ()=> {
+		return ([
+			{ key: 'sign-out', text: (<span onClick={this.handleLogout}>Sign Out</span>), icon: 'sign out'},
+		])
+	}
+	
+
 	render() {
 		const { activeItem } = this.state;
+		const trigger = this.getTrigger();
+		const userOptions = this.getUserOptions();
+
 		console.log("this.props.isLogged", this.props.isLogged);
+		
 		return (
 			<Segment inverted>
 				<Menu inverted secondary>
@@ -45,12 +68,14 @@ class Header extends Component {
 						to="/eventList"
 					/>
 
-					<Menu.Menu position="right">
-						<Menu.Item>
-							<Button primary>
-								{this.props.isLogged ?  (<Link to="/" onClick={this.handleLogout}>Log Out</Link>) : (<Link to="/login">Log In</Link>) }
-							</Button>
-						</Menu.Item>
+					<Menu.Menu position='right'>
+						<Button color="black">
+					{this.props.isLogged ? (
+						<Dropdown trigger={trigger} options={userOptions} icon={null} style={{margin: "auto"}}/>
+					):(
+						<Link to="/logIn"><Icon name="user" />Log in</Link>
+					)}
+						</Button>
 					</Menu.Menu>
 		
 				</Menu>
@@ -60,7 +85,8 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-	isLogged: state.login.isLogged
+	isLogged: state.login.isLogged,
+	userName: state.login.userName
 });
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

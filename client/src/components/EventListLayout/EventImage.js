@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { Container, Button} from 'semantic-ui-react';
 import './EventImage.css';
 
-import eventBasketball from '../../assets/basketball.jpg';
-import eventFloorball from '../../assets/floorball.jpg';
-import eventFootball from '../../assets/football.jpg';
-import eventRun from '../../assets/run.jpg';
-import eventSnowboard from '../../assets/snowboard.jpg';
+import Basketball from '../../assets/basketball.jpg';
+import Floorball from '../../assets/floorball.jpg';
+import Football from '../../assets/football.jpg';
+import Run from '../../assets/run.jpg';
+import Snowboard from '../../assets/snowboard.jpg';
+import Cycle from "../../assets/cycle.jpg";
+import UsFootball from "../../assets/usfootball.jpg";
 
 /*
 Photo by Tim Mossholder from Pexels ( basektball )
@@ -23,7 +25,7 @@ class EventImage extends React.Component {
     }
 
     componentWillMount() {
-        const imageList = [eventBasketball, eventFloorball, eventFootball, eventRun, eventSnowboard];
+        const imageList = [Basketball, Floorball, Football, Run, Snowboard, Cycle, UsFootball];
         let temp = Math.floor(Math.random() * imageList.length);
         this.setState({
             image: imageList[temp]

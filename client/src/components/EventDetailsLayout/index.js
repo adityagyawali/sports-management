@@ -8,38 +8,58 @@ import EventDetailHead from "./EventDetailHead";
 import EventJoin from "./EventJoin";
 import EventDetailBody from "./EventDetailBody";
 
-import {connect} from 'react-redux';
-import {getEventDetail, getJoinedPlayers} from '../../actions/eventDetailActions';
+import { getEventDetail, getJoinedPlayers} from '../../actions/eventDetailActions';
+import { deleteEvent } from '../../actions/modifyEventActions';
+import { modifyMessage, deleteMessage } from '../../actions/joinEventActions';
 import { getSportsCategory} from '../../actions/needPlayersActions';
+
+import {connect} from 'react-redux';
 
 class EventDetailsLayout extends React.Component{
     
-    componentDidMount(){  
+    componentWillMount(){  
         if(!this.props.isLogged){
             alert("You need Log in first!!")
             this.props.history.push("/login")
         }else{
-            
-            const id = window.location.href.split("/").slice(-1)[0]
-            this.props.dispatch(getEventDetail(id));
-            this.props.dispatch(getJoinedPlayers(id));
-            this.props.dispatch(getSportsCategory());
+            this.getRefresh();
         }
     }
 
-    handleJoinSubmit = () => {
+    getRefresh = () => {
         const id = window.location.href.split("/").slice(-1)[0]
         this.props.dispatch(getEventDetail(id));
         this.props.dispatch(getJoinedPlayers(id));
+        this.props.dispatch(getSportsCategory());
     }
 
-    handleModifySubmit = () => {
-        const id = window.location.href.split("/").slice(-1)[0]
+    handleJoinSubmit = () => {
+        this.getRefresh();
+    }
+    //event part
+    handleModifyEventSubmit = () => { //event modify
+        const id =  this.props.eventDetailList._id; // window.location.href.split("/").slice(-1)[0]
         this.props.history.push("/modifyEvent/"+id);
+    }
+    handleDeleteEventSubmit = () => {
+        const id =  this.props.eventDetailList._id; // window.location.href.split("/").slice(-1)[0]
+        this.props.dispatch(deleteEvent(id, () => {
+            this.props.history.push("/eventList")
+        }))
+    }
+
+    //message part
+    handleModifyMessageSubmit = (item)=> {
+        this.props.dispatch(modifyMessage(item))
+        this.getRefresh();
+    }
+    handleDeleteMessageSubmit = (id) => {
+        this.props.dispatch(deleteMessage(id))
+        this.getRefresh();   
     }
 
     render(){
-        
+    
         let eventDetail;
         if (this.props.eventDetailloading || this.props.joinedPlayerLoading || this.props.sportsCategoryLoading){
             eventDetail = (
@@ -49,16 +69,21 @@ class EventDetailsLayout extends React.Component{
             )
         }else if ( this.props.eventDetailloading === false && this.props.joinedPlayerLoading === false && this.props.sportsCategoryLoading === false) {
             const joinedNum = this.props.joinedPlayerList.length 
-            const {players} = this.props.eventDetaillist;
+            const {players} = this.props.eventDetailList;
             const userName = this.props.loggedUserName.split("@")[0]
             
             eventDetail = (
             <Container >
-                <EventDetailHead event={this.props.eventDetaillist} joinedPlayerNum={joinedNum} userName={userName} sportCategoryList={this.props.sportCategoryList}/>
+                <EventDetailHead event={this.props.eventDetailList} joinedPlayerNum={joinedNum} sportCategoryList={this.props.sportCategoryList}/>
                 <hr />
-                <EventJoin eventId={this.props.eventDetaillist._id} userId={this.props.loggedUserId} userName={userName} onSubmit={this.handleJoinSubmit} joinedPlayerNum={joinedNum} players={players}/>
+                <EventJoin eventId={this.props.eventDetailList._id} userId={this.props.loggedUserId} userName={userName} onSubmit={this.handleJoinSubmit} joinedPlayerNum={joinedNum} players={players}/>
                 <hr />
-                <EventDetailBody event={this.props.eventDetaillist} loggedUserId={this.props.loggedUserId} joinedPlayerList={this.props.joinedPlayerList} onModify={this.handleModifySubmit}/>
+                <EventDetailBody event={this.props.eventDetailList} loggedUserId={this.props.loggedUserId} 
+                    joinedPlayerList={this.props.joinedPlayerList} 
+                    onModifyEvent={this.handleModifyEventSubmit}
+                    onDeleteEvent={this.handleDeleteEventSubmit}
+                    onModifyMessage={this.handleModifyMessageSubmit}
+                    onDeleteMessage= {this.handleDeleteMessageSubmit}/>
             </Container>)
         }
 
@@ -81,7 +106,7 @@ const mapStateToProps = (state) => ({
     eventDetailloading: state.eventDetail.loading,
     joinedPlayerLoading: state.eventDetail.joinedPlayerLoading,
     sportsCategoryLoading: state.needPlayerList.loading,
-    eventDetaillist: state.eventDetail.list,
+    eventDetailList: state.eventDetail.list,
     joinedPlayerList: state.eventDetail.joinedPlayer,
     sportCategoryList: state.needPlayerList.sportCategoryList
 })
