@@ -123,7 +123,7 @@ app.post("/logout", function(req,res) {
 	if(req.session) {
 		req.session.destroy();
 	}
-	res.status(200).json({"message":"logged out"});
+	return res.status(200).json({"message":"logged out"});
 });
 
 
@@ -167,7 +167,7 @@ function isUserLogged(req,res,next) {
 	if(req.isAuthenticated()) {
 		return next();
 	}
-	res.status(403).json({"message":"not allowed"});
+	return res.status(403).json({"message":"not allowed"});
 }
 
 function createToken() {
@@ -198,12 +198,12 @@ app.post("/getSportsCategory", function (req, res){
 
     categoryModel.find( function(err, item){
         if(err){
-            res.status(404).json({"message": "error"})
+            return res.status(404).json({"message": "error"})
         }
         if(!item){
-            res.status(404).json({"message":"item is not existed"})
+            return res.status(404).json({"message":"item is not existed"})
         }
-        res.status(200).json(item)
+        return res.status(200).json(item)
     }).sort({"category": 1})
 })
 
@@ -212,13 +212,13 @@ app.post("/getRegionCategory", function (req, res){
 
     regionModel.find( function(err, item){
         if(err){
-            res.status(404).json({"message": "error"})
+            return res.status(404).json({"message": "error"})
         }
         if(!item){
-            res.status(404).json({"message":"item is not existed"})
+            return res.status(404).json({"message":"item is not existed"})
         }
         
-        res.status(200).json(item)
+        return res.status(200).json(item)
     }).sort({"region": 1})
 })
 

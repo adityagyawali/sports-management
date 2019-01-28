@@ -67,7 +67,6 @@ router.post("/joinEvent", function (req, res){
         if(err){
             return res.status(409).json({"message": "item not saved"})
         }
-        
         //update joinedPlayers in eventList (joinedPlayers)
         needPlayerModel.updateOne( {"_id": req.body.eventId}, // query 
             { $inc: { "joinedPlayers": 1 }}, //increase by 1 
@@ -78,9 +77,8 @@ router.post("/joinEvent", function (req, res){
             if(!item){
                 return res.status(404).json({"message": "eventDetail not found"})
             }
-        })  
-
-        return res.status(200).json({"message": "success"})//success
+            return res.status(200).json({"message": "success"})//success
+        })   
     })
 });
 
@@ -91,7 +89,6 @@ router.post("/getJoinedPlayers/:id", function (req, res){
         if(err){
             return res.status(404).json({"message": "error"})
         }
-
         return res.status(200).json(item);
     }) 
 })
@@ -123,12 +120,11 @@ router.post("/saveModifiedEvent/:id", function(req,res){
         {$set: item },//set changes
         function(err, item){
             if(err){
-                res.status(400).json({"message": "saving modifeidEvent Failed"})
+                return res.status(400).json({"message": "saving modifeidEvent Failed"})
             }
             if(!item){
-                res.status(400).json({"message": "cannot find item with id"})
+                return res.status(400).json({"message": "cannot find item with id"})
             }
-            
             return res.status(200).json({"message":"saving modfiedEvent Success"})
         }
     )
@@ -140,14 +136,14 @@ router.post("/deleteEvent/:id", function(req,res){
     
     //database action 두개의 데이타를 지워야 함.
     needPlayerModel.remove({"_id": id}, function (err, item){
-        if(err) res.status(409).json({"message":"delete event failed with"+ err})
-        if(!item) res.status(409).json({"message":"delete event failed with item not found"})
+        if(err) return res.status(409).json({"message":"delete event failed with"+ err})
+        if(!item) return res.status(409).json({"message":"delete event failed with item not found"})
 
         joinEventModel.remove({"eventId": id}, function(err, item){
-            if(err) res.status(409).json({"message":"delete event failed with"+ err})
-            if(!item) res.status(409).json({"message":"delete event failed with item not found"})
+            if(err) return res.status(409).json({"message":"delete event failed with"+ err})
+            if(!item) return res.status(409).json({"message":"delete event failed with item not found"})
             
-            res.status(200).json({"message": "delete event success"})
+            return res.status(200).json({"message": "delete event success"})
         })
     })
 })
@@ -160,18 +156,16 @@ router.post("/modifyMessage", function(req, res){
     const id = req.body.id
     const comment = req.body.comment
 
-    joinEventModel.updateOne( {"_id": id }, 
-        {$set: {"comment": comment}},
+    joinEventModel.updateOne( {"_id": id }, {$set: {"comment": comment}},
         function (err, item){
             if(err){
-                res.status(400).json({"message": "saving modified message Failed"})
+                return res.status(400).json({"message": "saving modified message Failed"})
             }
             if(!item){
-                res.status(400).json({"message": "cannot find item with id"})
+                return res.status(400).json({"message": "cannot find item with id"})
             }
-            
-            res.status(200).json({"message":"modifying message saved !"})
-        }        
+            return res.status(200).json({"message":"modifying message saved !"})
+        }       
     )
 })
 
@@ -188,21 +182,16 @@ router.post("/deleteMessage/:id", function(req, res){
                 {$inc: {"joinedPlayers": -1}}
             ).then( response => {
                 console.log("delete joinedPlayer")
-                res.status(200).json({"message":"delete message & dscrease Joinedplyaer success"})
+                return res.status(200).json({"message":"delete message & dscrease Joinedplyaer success"})
             }).catch( error => {
-                res.status(409).json({"message": "needPlayerModel decrease joinedPlayers failed with"+ error})
-            })
-            
+                return res.status(409).json({"message": "needPlayerModel decrease joinedPlayers failed with"+ error})
+            })  
         }).catch( error => {
-            res.status(409).json({"message": "delete message failed with"+ error})
+            return res.status(409).json({"message": "delete message failed with"+ error})
         })
-        
     }).catch( error => {
-        res.status(409).json({"message": "delete message failed with"+ error})
+        return res.status(409).json({"message": "delete message failed with"+ error})
     })
-
-
-    
 })
 
 

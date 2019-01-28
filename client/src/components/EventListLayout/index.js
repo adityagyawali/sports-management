@@ -23,6 +23,18 @@ class EventLayout extends React.Component {
         this.props.dispatch(getSportsCategory());
         this.props.dispatch(getRegionCategory());
     }
+    
+    getUniqueSportsCategoryFromEventList = () => {
+        const eventList = this.props.list;
+        let temp = [];
+        eventList.map( (ele, i) => {
+            if(!temp.includes(ele.category)){
+                temp.push(ele.category)
+            }
+            return "";
+        })
+        return temp.sort();
+    }
 
     handleOnChange = ( filteringInfo )=>{
         const allList = this.props.list;
@@ -70,7 +82,7 @@ class EventLayout extends React.Component {
 				<Header />
 
                 <EventImage />
-                <SearchBar onChange={this.handleOnChange} sportCategoryList={this.props.sportCategoryList} regionCategoryList={this.props.regionCategoryList}/>
+                <SearchBar onChange={this.handleOnChange} sportCategoryList={this.getUniqueSportsCategoryFromEventList()} regionCategoryList={this.props.regionCategoryList}/>
                 {eventList}
                 
 				<Footer />

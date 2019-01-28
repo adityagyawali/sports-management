@@ -8,7 +8,7 @@ class SearchBar extends React.Component{
     state = {
         category: "",
         region: "",
-        cost:""
+        cost: ""
     }
 
     onSubmit = (e) => {
@@ -16,9 +16,9 @@ class SearchBar extends React.Component{
         let filteringInfo = {
             category: (this.state.category).length > 0 ? this.state.category : "ALL",
             region: (this.state.region).length > 0 ? this.state.region : "ALL",
-            cost: (this.state.cost) >= 0 ? this.state.cost : "ALL"
+            cost: this.state.cost > 0 ? this.state.cost : (this.state.cost === 0 ? 0 : "ALL")
         }
-
+        console.log(filteringInfo)
         this.props.onChange(filteringInfo);
     }
 
@@ -27,7 +27,7 @@ class SearchBar extends React.Component{
     
     getCategoryOptions = (categoryList) => {
 		let tempOptions = categoryList.map( ( ele, index) => {
-			return ({ key: index, text: ele.category, value: ele.category});
+			return ({ key: index, text: ele, value: ele});
 		})
 
 		tempOptions.splice(0,0, {key: tempOptions.length, text: "ALL", value: "ALL"})

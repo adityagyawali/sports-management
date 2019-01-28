@@ -34,7 +34,7 @@ class EventDetailsLayout extends React.Component{
     }
 
     handleJoinSubmit = () => {
-        this.getRefresh();
+        setTimeout( ()=> {this.getRefresh()}, 3000)
     }
     //event part
     handleModifyEventSubmit = () => { //event modify
@@ -51,11 +51,11 @@ class EventDetailsLayout extends React.Component{
     //message part
     handleModifyMessageSubmit = (item)=> {
         this.props.dispatch(modifyMessage(item))
-        this.getRefresh();
+        setTimeout( ()=> {this.getRefresh()}, 3000)
     }
     handleDeleteMessageSubmit = (id) => {
         this.props.dispatch(deleteMessage(id))
-        this.getRefresh();   
+        setTimeout( ()=> {this.getRefresh()}, 3000) 
     }
 
     render(){
