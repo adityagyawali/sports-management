@@ -52,6 +52,10 @@ class NeedPlayers extends React.Component {
 		}
 		let tempMinute = ('0'+ this.state.minute).slice(-2);
 		
+
+
+
+		
 		let item = {
 			category: tempCategory,
 			title:this.state.title,

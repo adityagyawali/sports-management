@@ -10,6 +10,13 @@ import { connect } from "react-redux";
 
 class LoginPage extends React.Component {
 
+	componentWillMount(){
+		if(this.props.isLogged){
+			alert("You are already logged in as "+ this.props.loggedUserName )
+			this.props.history.push("/")
+		}
+	}
+
 	handleLogin = (data)=>{
 		this.props.dispatch(logIn( data, ()=>{
 			this.props.history.push("/")
@@ -17,6 +24,7 @@ class LoginPage extends React.Component {
 	}
 
 	render() {
+
 		return (
 			<Container fluid>
 				<Header/>
@@ -27,6 +35,9 @@ class LoginPage extends React.Component {
 	}
 }
 
+const mapStateToProps = (state) => ({
+	isLogged: state.login.isLogged,
+	loggedUserName: state.login.userName
+})
 
-
-export default connect()(LoginPage);
+export default connect(mapStateToProps)(LoginPage);

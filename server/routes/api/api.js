@@ -110,11 +110,7 @@ router.post("/getModifyEvent/:id", function(req,res){
 router.post("/saveModifiedEvent/:id", function(req,res){
     console.log("saving modified Event request")
     const eventId = req.params.id;
-
-    let item = {
-        ...req.body,
-        modifiedDate: new Date()
-    }
+    const item = req.body;
 
     needPlayerModel.updateOne({"_id": eventId}, //query 
         {$set: item },//set changes

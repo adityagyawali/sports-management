@@ -68,22 +68,30 @@ class EventDetailsLayout extends React.Component{
                 </Container >
             )
         }else if ( this.props.eventDetailloading === false && this.props.joinedPlayerLoading === false && this.props.sportsCategoryLoading === false) {
-            const joinedNum = this.props.joinedPlayerList.length 
             const {players} = this.props.eventDetailList;
             const userName = this.props.loggedUserName.split("@")[0]
             
             eventDetail = (
             <Container >
-                <EventDetailHead event={this.props.eventDetailList} joinedPlayerNum={joinedNum} sportCategoryList={this.props.sportCategoryList}/>
+                <EventDetailHead event={this.props.eventDetailList} joinedPlayerNum={this.props.joinedPlayerList.length} sportCategoryList={this.props.sportCategoryList}/>
                 <hr />
-                <EventJoin eventId={this.props.eventDetailList._id} userId={this.props.loggedUserId} userName={userName} onSubmit={this.handleJoinSubmit} joinedPlayerNum={joinedNum} players={players}/>
+                <EventJoin eventId={this.props.eventDetailList._id} 
+                    userId={this.props.loggedUserId} 
+                    userName={userName} 
+                    joinedPlayerList={this.props.joinedPlayerList}
+                    players={players}
+                    onSubmit={this.handleJoinSubmit}
+                />
                 <hr />
-                <EventDetailBody event={this.props.eventDetailList} loggedUserId={this.props.loggedUserId} 
+                <EventDetailBody event={this.props.eventDetailList} 
+                    userId={this.props.loggedUserId}
+                    userName={userName}  
                     joinedPlayerList={this.props.joinedPlayerList} 
                     onModifyEvent={this.handleModifyEventSubmit}
                     onDeleteEvent={this.handleDeleteEventSubmit}
                     onModifyMessage={this.handleModifyMessageSubmit}
-                    onDeleteMessage= {this.handleDeleteMessageSubmit}/>
+                    onDeleteMessage= {this.handleDeleteMessageSubmit}
+                />
             </Container>)
         }
 

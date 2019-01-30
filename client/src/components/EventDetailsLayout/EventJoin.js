@@ -26,12 +26,27 @@ class EventJoin extends React.Component {
         this.props.onSubmit();
     }
 
+    isAlreadyJoined = () => {
+        const joinedList = this.props.joinedPlayerList;
+        for(let i=0; i<joinedList.length;i++){
+            if(this.props.userId === joinedList[i].userId){
+                return true
+            }
+        }
+        return false
+    }
+
     render(){
-        const joinedPlayers = this.props.joinedPlayerNum;
+        const joinedPlayers = this.props.joinedPlayerList.length;
         const players = this.props.players;
         let joinButtonToggle;
 
-        if (players > joinedPlayers){
+        if(this.isAlreadyJoined()){
+            joinButtonToggle =             
+            <Container>
+                <h1 className="eventJoinBox">You joined event! <br/> Enjoy it !</h1>
+            </Container>
+        }else if (players > joinedPlayers){
             joinButtonToggle = 
                 <Container>
                     <h1 className="eventJoinBox">Join the Event ?</h1>
@@ -48,7 +63,7 @@ class EventJoin extends React.Component {
         }else{
             joinButtonToggle = 
             <Container>
-                <h1 className="eventJoinBox">You are late this time ! Try other events ! </h1>
+                <h1 className="eventJoinBox">You are late this time ! <br/>Try other events ! </h1>
             </Container>
         }
 

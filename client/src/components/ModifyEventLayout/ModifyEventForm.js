@@ -16,13 +16,11 @@ class ModifyEventForm extends React.Component {
         hour:this.props.eventInfo.hour,
         minute: this.props.eventInfo.minute,
         players: this.props.eventInfo.players,
-        joinedPlayers: this.props.eventInfo.joinedPlayers,
         duration: this.props.eventInfo.duration,
         cost: this.props.eventInfo.cost,
         mobile: this.props.eventInfo.mobile,
         email: this.props.eventInfo.email,
 		description: this.props.eventInfo.description,
-		userId: this.props.loggedUserId,
 		isNewCategory: false,
 		newCategory:""
     }
@@ -60,13 +58,12 @@ class ModifyEventForm extends React.Component {
 			hour:this.state.hour,
 			minute: tempMinute,
 			players: this.state.players,
-			joinedPlayers: 0,
 			duration:this.state.duration, 
 			cost: this.state.cost,
 			mobile: this.state.mobile,
 			email: this.state.email,
 			description:this.state.description,
-			userId: this.props.loggedUserId,
+			modifiedDate: new Date()
 		}
 		
 		this.props.onSubmit(item)

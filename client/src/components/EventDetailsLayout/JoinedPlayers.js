@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header, Image, Button, Form, Input, Confirm} from 'semantic-ui-react';
+import {Header, Image, Button, Form, Input, Confirm, Icon} from 'semantic-ui-react';
 import Mark from '../../assets/mark.png';
 import "./JoinedPlayers.css"
 
@@ -49,8 +49,8 @@ class JoinedPlayers extends React.Component{
         if ( !isModifyMode){
             joinedPlayerForm =
                 <Header.Subheader>
-                    Message: {this.state.comment} 
-                    { this.state.userId === this.props.loggedUserId ?
+                    <Icon name="comment outline" />{this.state.comment} 
+                    { (this.state.userId === this.props.loggedUserId || this.props.loggedUserName === "adminMaster")?
                         ( <span>
                         <Button onClick={this.handleModify} className="messageModifyButton" size="small" color="red" >Modify</Button>
                         <Button onClick={this.open} className="messageModifyButton" size="small" color="facebook" >Delete</Button>

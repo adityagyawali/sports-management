@@ -33,7 +33,8 @@ class EventDetailBody extends React.Component {
         }else{
             joinedPlayerList = joinedPlayers.map( (player, index) => {
                 return <JoinedPlayers key={"player_"+ index} player={player} 
-                    loggedUserId={this.props.loggedUserId} 
+                    loggedUserId={this.props.userId}
+                    loggedUserName={this.props.userName} 
                     modifyMessage={this.handleModifyMessage}
                     deleteMessage={this.handleDeleteMessage}/>
             });
@@ -43,7 +44,7 @@ class EventDetailBody extends React.Component {
         const userId = this.props.event.userId;
 
         return (
-
+    
             <Container className="detailBox">
                 
                 <Container className="detailInfoBox">
@@ -88,7 +89,7 @@ class EventDetailBody extends React.Component {
                     </Container>
                 </Container>
                 
-                {userId === this.props.loggedUserId ?
+                { (userId === this.props.userId || this.props.userName === "adminMaster") ?
                     (<Container className="modifiyButtonBox">
                         <Button color="red" size="big" onClick={this.handleModifyEvent}><Icon name="cog"/>Modify</Button>
                         <Button color="facebook" size="big" onClick={this.open}><Icon name="delete"/>Delete</Button>
