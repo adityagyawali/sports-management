@@ -63,6 +63,7 @@ export const signUp = (item, goToLoginPage) => {
             if(response.ok){
                 response.json().then( (resData) => {
                     dispatch(signUpSucess())
+                    alert("You are successfully signed up !")
                     goToLoginPage()
                 }).catch( error => {
                     dispatch(singUpFailed("response.json() not ok with "+ error))

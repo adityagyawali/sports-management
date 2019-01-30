@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
 	componentWillMount(){
 		if(this.props.isLogged){
 			alert("You are already logged in as "+ this.props.loggedUserName )
-			this.props.history.push("/")
+			this.props.history.push("/eventList")
 		}
 	}
 

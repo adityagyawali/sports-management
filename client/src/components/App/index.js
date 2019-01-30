@@ -22,7 +22,7 @@ class App extends Component {
 			<HashRouter>
 				<Switch>
 					<Route path="/app" component={MainLayout} />
-					<Route exact path="/eventList" component={EventListLayout} />
+					<Route path="/eventList" component={EventListLayout} />
 					<Route path="/eventDetails" component={EventDetailsLayout} />
 					<Route exact path="/needPlayers" component={NeedPlayerLayout} />
 					<Route path="/modifyEvent"  component={ModifyEvent} />

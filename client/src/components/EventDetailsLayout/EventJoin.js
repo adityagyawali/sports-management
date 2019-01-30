@@ -44,7 +44,7 @@ class EventJoin extends React.Component {
         if(this.isAlreadyJoined()){
             joinButtonToggle =             
             <Container>
-                <h1 className="eventJoinBox">You joined event! <br/> Enjoy it !</h1>
+                <h1 className="eventJoinBox">You are successfully joined! <br/> Enjoy {this.props.category}!</h1>
             </Container>
         }else if (players > joinedPlayers){
             joinButtonToggle = 

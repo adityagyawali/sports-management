@@ -63,15 +63,27 @@ class EventLayout extends React.Component {
             list : costFiltered,
             isFiltered: true
         });
-    }   
+    }
+    
+    getDefaultCategory = () => {
+        let tempCategory = window.location.href;
+        if ( tempCategory.indexOf("?")){
+            tempCategory = window.location.href.split("?")[1]
+            return tempCategory;
+        }
+        return "";
+        
+    }
     
     render() {
         let eventList;
+        const defaultFiltering= this.getDefaultCategory();
         if (this.props.loading || this.props.sportsCategoryLoading){
             eventList = ( 
                 <Loader active inline='centered' />
             )
         }else {
+           
             eventList = ( 
                 <EventList eventList={(this.state.isFiltered ? this.state.list : this.props.list)} sportCategoryList={this.props.sportCategoryList} /> 
             )
@@ -82,7 +94,7 @@ class EventLayout extends React.Component {
 				<Header />
 
                 <EventImage />
-                <SearchBar onChange={this.handleOnChange} sportCategoryList={this.getUniqueSportsCategoryFromEventList()} regionCategoryList={this.props.regionCategoryList}/>
+                <SearchBar onChange={this.handleOnChange} defaultFiltering={defaultFiltering} sportCategoryList={this.getUniqueSportsCategoryFromEventList()} regionCategoryList={this.props.regionCategoryList}/>
                 {eventList}
                 
 				<Footer />

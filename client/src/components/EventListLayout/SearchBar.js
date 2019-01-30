@@ -6,9 +6,21 @@ import './SearchBar.css';
 class SearchBar extends React.Component{
 
     state = {
-        category: "",
+        category: this.props.defaultFiltering,
         region: "",
         cost: ""
+    }
+
+    componentDidMount(){
+        if ( this.props.defaultFiltering !== undefined ){
+            setTimeout( () => {
+                let filteringInfo = {
+                    category: this.state.category,
+                    region: (this.state.region).length > 0 ? this.state.region : "ALL",
+                    cost: this.state.cost > 0 ? this.state.cost : (this.state.cost === 0 ? 0 : "ALL")
+                }        
+                this.props.onChange(filteringInfo);
+        }, 500)}
     }
 
     onSubmit = (e) => {
@@ -18,7 +30,6 @@ class SearchBar extends React.Component{
             region: (this.state.region).length > 0 ? this.state.region : "ALL",
             cost: this.state.cost > 0 ? this.state.cost : (this.state.cost === 0 ? 0 : "ALL")
         }
-        console.log(filteringInfo)
         this.props.onChange(filteringInfo);
     }
 
@@ -57,8 +68,7 @@ class SearchBar extends React.Component{
         const {sportCategoryList,regionCategoryList } = this.props;
 		const sportsCategoryOptions = this.getCategoryOptions(sportCategoryList);
 		const regionCategoryOptions = this.getRegionOptions(regionCategoryList);
-        const costCategoryOptions = this.getCostOptions();
-        
+        const costCategoryOptions = this.getCostOptions();        
 
         return (
             <Container className="searchBar">

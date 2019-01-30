@@ -68,7 +68,7 @@ class EventDetailsLayout extends React.Component{
                 </Container >
             )
         }else if ( this.props.eventDetailloading === false && this.props.joinedPlayerLoading === false && this.props.sportsCategoryLoading === false) {
-            const {players} = this.props.eventDetailList;
+            const {players,category} = this.props.eventDetailList;
             const userName = this.props.loggedUserName.split("@")[0]
             
             eventDetail = (
@@ -80,6 +80,7 @@ class EventDetailsLayout extends React.Component{
                     userName={userName} 
                     joinedPlayerList={this.props.joinedPlayerList}
                     players={players}
+                    category={category}
                     onSubmit={this.handleJoinSubmit}
                 />
                 <hr />
