@@ -57,7 +57,7 @@ class JoinedPlayers extends React.Component{
                         <Confirm style={{height: "auto"}} 
                                 open={this.state.open} 
                                 size="small"
-                                content={"Are you sure that You don't want to join the event?"}
+                                content={<div className="content">Are you sure <span style={{color: "red", fontWeight:"bold"}}>Delete the Message ?</span></div>}
                                 onCancel={this.close} 
                                 onConfirm={this.handleDelete} />
                         

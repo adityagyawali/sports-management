@@ -83,7 +83,6 @@ class EventLayout extends React.Component {
                 <Loader active inline='centered' />
             )
         }else {
-           
             eventList = ( 
                 <EventList eventList={(this.state.isFiltered ? this.state.list : this.props.list)} sportCategoryList={this.props.sportCategoryList} /> 
             )

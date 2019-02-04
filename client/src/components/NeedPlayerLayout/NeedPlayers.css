@@ -42,9 +42,10 @@
 .findGuest .smallLabel{
     font-size: 1rem !important;
     font-weight: bold;
+    width: fit-content !important;
 }
 .findGuest .time_input{
-    margin: 0 1rem;
+    margin: 0 0 0 2rem;
 }
 
 .findGuest .time_input  input {
@@ -57,6 +58,7 @@
 
 .findGuest .description_input{
     height: 20rem !important;
+    width: 36rem !important;
 }
 
 .findGuest .submitButton {

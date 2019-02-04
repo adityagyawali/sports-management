@@ -17,7 +17,8 @@
 
 .sportCardSection .header {
   text-align: center;
-  font-weight: bold;
+  1font-weight: bold !important;
+  font-family: inherit !important;
 }
 
 .sportCardSection .card .sportImg {

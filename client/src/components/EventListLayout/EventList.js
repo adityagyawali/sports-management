@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Table } from 'semantic-ui-react';
+import {Container, Table, Header } from 'semantic-ui-react';
 
 import './EventList.css';
 import Event from './Event';
@@ -9,10 +9,26 @@ class EventList extends React.Component {
 
     render(){
         const {eventList, sportCategoryList} = this.props;
+        let tableBodyList;
 
-        let tableBodyList = eventList.map( (event, index) => {
-            return (<Event key={"event_"+ index} event={event} sportCategoryList={sportCategoryList}/>);
-        });
+        if (eventList.length !== 0){
+            tableBodyList = eventList.map( (event, index) => {
+                return (<Event key={"event_"+ index} event={event} sportCategoryList={sportCategoryList}/>);
+            });
+        }else {
+            tableBodyList = (
+                <Table.Row>
+                    <Table.Cell className="eventTablefixedTitleWidth" colSpan='6'>
+                        <Header >
+                            <Header.Content>
+                               No result found ! Search "ALL"
+                            </Header.Content>
+                        </Header>
+                    </Table.Cell>
+                </Table.Row>
+            )
+        }
+        
         
     
         return (

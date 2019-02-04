@@ -188,26 +188,26 @@ class NeedPlayers extends React.Component {
 							<label htmlFor="time">Time: </label>
 							<span name="time">
 								<Button.Group>
-									<Button attached="left">
-										<label className="smallLabel">
+									<label className="smallLabel">
+										<Button attached="left">
 											<input name="amPm"
 												type="radio"  
 												onClick={this.handleInput}												
 												value="AM"
 											/>
 											<span>AM</span>
-										</label>
-									</Button>
-									<Button attached="right" onClick={this.handleAmPmButton}>
-										<label className="smallLabel">
+										</Button>
+									</label>
+									<label className="smallLabel">
+										<Button attached="right" onClick={this.handleAmPmButton}>										
 											<input name="amPm"
 													type="radio"  
 													onClick={this.handleInput}
 													value="PM"
 												/>
 											<span>PM</span>
-										</label>
-									</Button>
+										</Button>
+									</label>
 								</Button.Group>
 								<Input name="hour"  label='Hour' placeholder='9' 
 									type="number" onChange={this.handleInput}

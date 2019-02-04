@@ -8,7 +8,13 @@ import { logout } from '../../actions/signUp_LogInActions'
 import { connect } from "react-redux";
 
 class Header extends Component {
-	state = { activeItem: "Home" };
+	state = { activeItem: "app" };
+
+	componentDidMount(){
+		let page = (window.location.hash.split("/")[1]) 
+		if (page.includes("?")) page = page.split("?")[0]
+		this.setState({ activeItem :  page})
+	}
 
 	handleLogout = () => {
 		this.props.dispatch(logout( ()=> {
@@ -46,7 +52,7 @@ class Header extends Component {
 				<Menu inverted secondary>
 					<Menu.Item
 						name="Home"
-						active={activeItem === "Home"}
+						active={activeItem === "app"}
 						onClick={this.handleItemClick}
 						as={Link} 
 						to='/app'
@@ -54,7 +60,7 @@ class Header extends Component {
 
 					<Menu.Item
 						name="Need Players"
-						active={activeItem === "Need Players"}
+						active={activeItem === "needPlayers"}
 						onClick={this.handleItemClick}
 						as={Link} 
 						to="/needPlayers"
@@ -62,7 +68,7 @@ class Header extends Component {
 
 					<Menu.Item
 						name="Find Events"
-						active={activeItem === "Find Events"}
+						active={activeItem === "eventList"}
 						onClick={this.handleItemClick}
 						as={Link} 
 						to="/eventList"

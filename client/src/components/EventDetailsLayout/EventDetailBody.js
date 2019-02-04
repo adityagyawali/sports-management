@@ -6,7 +6,9 @@ import JoinedPlayers from './JoinedPlayers';
 
 class EventDetailBody extends React.Component {
     //for confirm modal
-    state = { open : false }
+    state = { 
+        open : false
+    }
     open = () => this.setState({ open: true })
     close = () => this.setState({ open: false })
     
@@ -97,9 +99,9 @@ class EventDetailBody extends React.Component {
                         <Confirm style={{height: "auto"}} 
                             open={this.state.open} 
                             size="small"
-                            content={'Are you sure that You want to delete the Event?'}
+                            content= {<div className="content">Are you sure <span style={{color: "red", fontWeight:"bold"}}>Delete the Event ?</span></div>}
                             onCancel={this.close} 
-                            onConfirm={this.handleDeleteEvent} />
+                            onConfirm={this.handleDeleteEvent}/>
                         
                     </Container>) : ""
                 }
