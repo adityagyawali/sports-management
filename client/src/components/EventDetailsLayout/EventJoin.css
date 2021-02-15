@@ -1,0 +1,15 @@
+.eventJoinBox {
+    text-align: center;
+}
+
+.eventJoinForm {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 5rem;
+}
+
+.eventJoinFormInputField {
+    margin: 0 0 !important;
+}
