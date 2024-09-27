@@ -1,0 +1,21 @@
+.footer {
+  background: black;
+  width: 100%;
+  text-align: center;
+  padding: 15px 15px;
+}
+.footer a {
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  transition: all .5s ease;
+}
+
+.footer a:hover {
+  color: aqua;
+} 
+
+.copyright {
+  font-family: Arial, "Helvetica Neue",
+  Helvetica, sans-serif;
+}

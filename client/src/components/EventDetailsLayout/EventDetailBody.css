@@ -1,0 +1,53 @@
+.detailBox{
+    margin: 5% auto;
+}
+
+.detailInfoBox, .detailInfo{
+    display: flex !important;
+    justify-content: flex-end;
+    text-align: center;
+    
+}
+
+.detailInfo {
+    min-height: 7rem;
+    padding: 1rem;
+}
+
+.detailInfoLeft {
+    width: 40% !important;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding-right: 5%;
+}
+
+.detailInfoRight {
+    width: 60% !important;
+    font-size: 1.2rem;
+    display: flex !important;
+    justify-content: left;
+    text-align: left !important;
+    font-weight: 500;
+}
+
+.contactInfo{
+    display: flex !important;
+}
+
+.contactDetail{
+    width: 50%;
+    margin: 0 auto !important;
+}
+
+.joinedPlayerInfo{
+    display: block !important;
+}
+
+.joinedPlayerDetail{
+    width: 100%;
+    margin: 0 auto 3% auto !important;
+}
+
+.modifiyButtonBox {
+    text-align: center;
+}
